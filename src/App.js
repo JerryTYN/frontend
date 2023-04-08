@@ -1,15 +1,18 @@
-import React from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
-import Home from './container/Home'
-import Login from './components/Login'
-const App = () => {
-  return (
-   
-    <Routes>
-        <Route path = "login" element={<Login/>}/>
-        <Route path = "/*" element={<Home/>}/>
-    </Routes>
-  )
-}
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-export default App
+const Login = lazy(() => import('./components/Login'));
+const Home = lazy(() => import('./container/Home'));
+
+const App = () => {
+    return (
+        <Suspense fallback={<>Loading...</>}>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/*" element={<Home />} />
+            </Routes>
+        </Suspense>
+    );
+};
+
+export default App;
