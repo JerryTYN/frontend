@@ -1,0 +1,20 @@
+{
+    "teacher": [
+        {
+            "id":1,
+            "name":"Nguyễn Văn A",
+            "email":"nguyenvanA@gmail.com",
+            "faculty": "Công nghệ thông tin",
+            "dob": "12/1/1999",
+            "pob": "Long An"
+        },
+        {
+            "id":2,
+            "name":"Nguyễn Văn B",
+            "email":"nguyenvanB@gmail.com",
+            "faculty": "Công nghệ ô tô",
+            "dob": "12/1/1989",
+            "pob": "Gò Công"
+        }
+    ]
+}

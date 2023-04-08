@@ -1,0 +1,8 @@
+import axios from "axios"
+
+export const API_ROUTES = {
+    login: "/login",
+    getUserInfo: "/api/User/getCurrentUserInfo"
+}
+
+export const axiosInstance = axios.create( {baseURL: process.env.REACT_APP_API_URL}) 
