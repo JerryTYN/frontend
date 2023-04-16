@@ -7,7 +7,6 @@ const faculties = [
   "Kỹ thuật phần mềm",
   "Khoa học dữ liệu",
   "Hệ thống thông tin",
-  //   "Công nghệ ô tô",
 ];
 
 const EditUserModal = ({ visible, onClose, userInfo }) => {
