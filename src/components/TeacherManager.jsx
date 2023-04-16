@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdOutlineLockReset } from "react-icons/md";
-import axios from "axios";
+// import axios from "axios";
 import EditUserModal from "./EditUserModal";
 import ResetPasswordModal from "./ResetPasswordModal";
 import DeleteUserModal from "./DeleteUserModal";
 import { API_ROUTES, axiosInstance } from "../cons";
+import AddTeacher from "./AddTeacher";
 const TeacherManager = ({ title }) => {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState();
@@ -15,7 +16,7 @@ const TeacherManager = ({ title }) => {
         headers: { Authorization: "bearer " + sessionStorage.getItem("token") },
       })
       .then((res) => {
-        setUsers(res.data)
+        setUsers(res.data);
         console.log(res);
       })
       .catch((err) => {
@@ -35,12 +36,15 @@ const TeacherManager = ({ title }) => {
     setOpenModal(false);
     setResetPassword(false);
     setDeleteUser(false);
+    setAddTeacherModal(false);
   };
+  const [addTeacherModal, setAddTeacherModal] = useState(false);
   const [resetPassword, setResetPassword] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
+  const [searchUser, setSearchUser] = useState("");
   return (
     <div className="relative h-full shadow-md rounded-lg p-2.5">
-      <div className="flex items-center justify-between py-4 bg-white p-2.5 ">
+      <div className="flex items-center justify-between py-4   p-2.5">
         <label for="table-search" className="sr-only">
           Search
         </label>
@@ -61,14 +65,24 @@ const TeacherManager = ({ title }) => {
             </svg>
           </div>
           <input
+            onChange={(e) => setSearchUser(e.target.value)}
             type="text"
             id="table-search-users"
             className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
             placeholder="Search for users"
           />
         </div>
+
+        <div className="flex items-center justify-center ">
+          <button
+            onClick={() => setAddTeacherModal(true)}
+            className="w-20 h-12 text-2xl font-bold bg-gray-900 rounded-lg text-gray-50 hover:bg-gray-50 hover:shadow-lg hover:text-gray-800 hover:border-2 hover:border-gray-500 "
+          >
+            +
+          </button>
+        </div>
       </div>
-      <div className=" h-[500px] bg-white rounded-b-lg shadow-xl overflow-auto">
+      <div className=" h-[480px] bg-white rounded-b-lg shadow-xl overflow-auto">
         <table className="w-full text-sm text-left text-gray-500 ">
           <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
@@ -90,65 +104,69 @@ const TeacherManager = ({ title }) => {
             </tr>
           </thead>
           <tbody>
-            {users.map((u, index) => (
-              <tr key={index} className="bg-white border-b hover:bg-gray-50 ">
-                <th
-                  scope="row"
-                  className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-                >
-                  <div className="pl-3">
-                    <div className="text-base font-semibold">{u.fullName}</div>
-                    <div className="font-normal text-gray-500">{u.email}</div>
-                  </div>
-                </th>
-                <td className="px-6 py-4">{u.faculty}</td>
-                <td className="px-6 py-4">{u.dateOfBirth}</td>
-                <td className="px-6 py-4">{u.placeOfBirth}</td>
+            {users
+              .filter((u) => u.fullName.toLowerCase().includes(searchUser))
+              .map((u, index) => (
+                <tr key={index} className="bg-white border-b hover:bg-gray-50 ">
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
+                  >
+                    <div className="pl-3">
+                      <div className="text-base font-semibold">
+                        {u.fullName}
+                      </div>
+                      <div className="font-normal text-gray-500">{u.email}</div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4">{u.faculty}</td>
+                  <td className="px-6 py-4">{u.dateOfBirth}</td>
+                  <td className="px-6 py-4">{u.placeOfBirth}</td>
 
-                <td className="px-6 py-4 text-xl">
-                  {/* <!-- Modal toggle --> */}
-                  <button
-                    href="#"
-                    type="button"
-                    data-modal-target="editUserModal"
-                    data-modal-show="editUserModal"
-                    className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
-                    onClick={() => {
-                      setUser(u);
-                      setOpenModal(true);
-                    }}
-                  >
-                    <AiFillEdit />
-                  </button>
-                  <button
-                    href="#"
-                    type="button"
-                    data-modal-target="editUserModal"
-                    data-modal-show="editUserModal"
-                    className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
-                    onClick={() => {
-                      setUser(u);
-                      setResetPassword(true);
-                    }}
-                  >
-                    <MdOutlineLockReset className="text-green-800" />
-                  </button>
-                  <button
-                    href="#"
-                    type="button"
-                    data-modal-target="editUserModal"
-                    data-modal-show="editUserModal"
-                    className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
-                    onClick={() => {
-                      setUser(u);
-                      setDeleteUser(true);
-                    }}
-                  >
-                    <AiFillDelete className="text-red-800" />
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td className="px-6 py-4 text-xl">
+                    {/* <!-- Modal toggle --> */}
+                    <button
+                      href="#"
+                      type="button"
+                      data-modal-target="editUserModal"
+                      data-modal-show="editUserModal"
+                      className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
+                      onClick={() => {
+                        setUser(u);
+                        setOpenModal(true);
+                      }}
+                    >
+                      <AiFillEdit />
+                    </button>
+                    <button
+                      href="#"
+                      type="button"
+                      data-modal-target="editUserModal"
+                      data-modal-show="editUserModal"
+                      className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
+                      onClick={() => {
+                        setUser(u);
+                        setResetPassword(true);
+                      }}
+                    >
+                      <MdOutlineLockReset className="text-green-800" />
+                    </button>
+                    <button
+                      href="#"
+                      type="button"
+                      data-modal-target="editUserModal"
+                      data-modal-show="editUserModal"
+                      className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
+                      onClick={() => {
+                        setUser(u);
+                        setDeleteUser(true);
+                      }}
+                    >
+                      <AiFillDelete className="text-red-800" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -168,6 +186,11 @@ const TeacherManager = ({ title }) => {
         visible={deleteUser}
         userInfo={user}
         onClose={handleCloseModal}
+      />
+      <AddTeacher
+        visible={addTeacherModal}
+        onClose={handleCloseModal}
+        // userInfo={user}
       />
     </div>
   );

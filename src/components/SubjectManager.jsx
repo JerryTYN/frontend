@@ -4,6 +4,7 @@ import pdffile from "../assets/tex3.pdf";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import { Subjects } from "../utils/subject";
+import MyDocument from "./MyDocument";
 const SubjectManager = () => {
   const [numPages, setNumPages] = useState(null);
   const onDocumentLoadSuccess = ({ numPages }) => {
@@ -60,9 +61,9 @@ const SubjectManager = () => {
         {/* <h1 className="font-bold text-gray-50 text-md">Subject_view</h1> */}
         <div className="flex-1 pt-12 mx-auto">
           <div className="flex w-[850px] bg-gray-50 rounded-xl h-[460px] overflow-y-auto justify-center scrollbar-hide border-1  border-gray-900 ">
-            <center>
+            {/* <center> */}
               <div>
-                <Document file={pdffile} onLoadSuccess={onDocumentLoadSuccess}>
+                {/* <Document file={pdffile} onLoadSuccess={onDocumentLoadSuccess}>
                   {Array.from(new Array(numPages), (el, index) => (
                     <Page
                       height="1200"
@@ -71,9 +72,10 @@ const SubjectManager = () => {
                       renderTextLayer={false}
                     />
                   ))}
-                </Document>
+                </Document> */}
+                <MyDocument/>
               </div>
-            </center>
+            {/* </center> */}
           </div>
           <div className="flex justify-end pt-4 pr-4 space-x-10 text-center">
             <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-green-400 to-green-700">
