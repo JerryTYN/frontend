@@ -2,9 +2,9 @@ import { AiOutlineAppstore,AiFillHdd, AiFillContainer, AiOutlineUserSwitch} from
 export const Menus = [
 
 
-    {title: "Dashboard", icon: <AiOutlineAppstore/>, url:"Dashboard" },
-    {title: "Quản lý chương trình", icon: <AiFillHdd/>, url: "ProcessManager"},
-    {title: "Quản lý môn học", icon: <AiFillContainer/>, url:"SubjectManager"},
-    {title: "Quản lý giảng viên", icon: <AiOutlineUserSwitch/>, url:"TeacherManager"},
+    {title: "Dashboard", icon: <AiOutlineAppstore/>, url:"Dashboard", roles: "User-Admin" },
+    {title: "Quản lý chương trình", icon: <AiFillHdd/>, url: "ProcessManager", roles: "Admin"},
+    {title: "Quản lý môn học", icon: <AiFillContainer/>, url:"SubjectManager", roles: "User-Admin"},
+    {title: "Quản lý giảng viên", icon: <AiOutlineUserSwitch/>, url:"TeacherManager", roles: "Admin"},
     
 ]

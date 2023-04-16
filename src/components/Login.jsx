@@ -70,9 +70,8 @@ const Login = () => {
                         </label>
                         <input
                             type="password"
-                            name="password"
-                            id="password"
-                            placeholder="••••••••"
+                  
+                            placeholder="password"
                             class="w-350 bg-gray-50 border border-gray-300   rounded-lg   p-2.5"
                             required=""
                             onChange={passwordHander}

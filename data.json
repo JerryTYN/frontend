@@ -6,7 +6,8 @@
             "email":"nguyenvanA@gmail.com",
             "faculty": "Công nghệ thông tin",
             "dob": "12/1/1999",
-            "pob": "Long An"
+            "pob": "Long An",
+            "sdt": "0123456789"
         },
         {
             "id":2,
@@ -14,7 +15,80 @@
             "email":"nguyenvanB@gmail.com",
             "faculty": "Công nghệ ô tô",
             "dob": "12/1/1989",
-            "pob": "Gò Công"
+            "pob": "Gò Công",
+            "sdt": "0987654321"
+        },
+        {
+            "id":3,
+            "name":"Nguyễn Văn C",
+            "email":"nguyenvanB@gmail.com",
+            "faculty": "Khoa học dữ liệu",
+            "dob": "12/1/1989",
+            "pob": "Gò Công",
+            "sdt": "0987654321"
+        },
+        {
+            "id":4,
+            "name":"Nguyễn Văn D",
+            "email":"nguyenvanB@gmail.com",
+            "faculty": "Hệ thống thông tin",
+            "dob": "12/1/1989",
+            "pob": "Gò Công",
+            "sdt": "0987654321"
+        },
+        {
+            "id":5,
+            "name":"Nguyễn Văn B",
+            "email":"nguyenvanB@gmail.com",
+            "faculty": "Công nghệ thông tin",
+            "dob": "12/1/1989",
+            "pob": "Gò Công",
+            "sdt": "0987654321"
+        },
+        {
+            "id":7,
+            "name":"Nguyễn Văn F",
+            "email":"nguyenvanB@gmail.com",
+            "faculty": "Khoa học máy tính",
+            "dob": "12/1/1989",
+            "pob": "Gò Công",
+            "sdt": "0987654321"
+        },
+        {
+            "id":8,
+            "name":"Nguyễn Văn B",
+            "email":"nguyenvanB@gmail.com",
+            "faculty": "Khoa học dữ liệu",
+            "dob": "12/1/1989",
+            "pob": "Gò Công",
+            "sdt": "0987654321"
+        },
+        {
+            "id":9,
+            "name":"Nguyễn Văn B",
+            "email":"nguyenvanB@gmail.com",
+            "faculty": "Kỹ thuật phần mềm",
+            "dob": "12/1/1989",
+            "pob": "Gò Công",
+            "sdt": "0987654321"
+        },
+        {
+            "id":10,
+            "name":"Nguyễn Văn B",
+            "email":"nguyenvanB@gmail.com",
+            "faculty": "Khoa học máy tính",
+            "dob": "12/1/1989",
+            "pob": "Gò Công",
+            "sdt": "0987654321"
+        },
+        {
+            "id":11,
+            "name":"Nguyễn Văn B",
+            "email":"nguyenvanB@gmail.com",
+            "faculty":"Kỹ thuật phần mềm",
+            "dob": "12/1/1989",
+            "pob": "Gò Công",
+            "sdt": "0987654321"
         }
     ]
 }
