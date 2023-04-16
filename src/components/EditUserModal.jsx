@@ -326,7 +326,7 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
 
                     <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b ">
                         <button
-                            className="bg-gradient-to-tl from-blue-400 to-blue-700 p-2.5 rounded-lg w-40  text-white font-bold hover:shadow-lg"
+                            className="bg-gradient-to-tl from-blue-400 to-blue-700 p-2.5 rounded-lg w-56  text-white font-bold hover:shadow-lg"
                             hidden={
                                 userInfo ? userInfo.roles === 'User' : false
                             }

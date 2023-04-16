@@ -5,10 +5,16 @@ import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import { Subjects } from "../utils/subject";
 import MyDocument from "./MyDocument";
+import AddSubjectModal from "./AddSubjectModal";
+import { Route, Routes } from "react-router-dom";
 const SubjectManager = () => {
+  const [addSubjectModal, setAddSubjectModal] = useState(false);
   const [numPages, setNumPages] = useState(null);
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
+  };
+  const handleCloseModal = () => {
+    setAddSubjectModal(false);
   };
   return (
     <div className="flex h-[580px] bg-white rounded-md shadow-lg overflow-hidden">
@@ -62,23 +68,16 @@ const SubjectManager = () => {
         <div className="flex-1 pt-12 mx-auto">
           <div className="flex w-[850px] bg-gray-50 rounded-xl h-[460px] overflow-y-auto justify-center scrollbar-hide border-1  border-gray-900 ">
             {/* <center> */}
-              <div>
-                {/* <Document file={pdffile} onLoadSuccess={onDocumentLoadSuccess}>
-                  {Array.from(new Array(numPages), (el, index) => (
-                    <Page
-                      height="1200"
-                      key={`page_${index + 1}`}
-                      pageNumber={index + 1}
-                      renderTextLayer={false}
-                    />
-                  ))}
-                </Document> */}
-                <MyDocument/>
-              </div>
+            {/* <div> */}
+              <MyDocument />
+            {/* </div> */}
             {/* </center> */}
           </div>
           <div className="flex justify-end pt-4 pr-4 space-x-10 text-center">
-            <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-green-400 to-green-700">
+            <button
+              onClick={() => setAddSubjectModal(true)}
+              className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-green-400 to-green-700"
+            >
               Tạo môn học
             </button>
             <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-yellow-400 to-yellow-700">
@@ -96,6 +95,7 @@ const SubjectManager = () => {
           </div>
         </div>
       </div>
+      <AddSubjectModal visible={addSubjectModal} onClose={handleCloseModal} />
     </div>
   );
 };

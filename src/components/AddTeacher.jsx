@@ -13,7 +13,7 @@ const AddTeacher = ({ visible, userInfo, onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm ">
       <div className="w-full h-full max-w-2xl md:h-auto">
-        <form action="#" className="relative bg-white rounded-lg shadow ">
+        <div action="#" className="relative bg-white rounded-lg shadow ">
           <div className="flex items-start justify-between p-4 border-b rounded-t ">
             <h3 className="text-xl font-semibold text-gray-900 ">
               Thêm giảng viên
@@ -215,7 +215,7 @@ const AddTeacher = ({ visible, userInfo, onClose }) => {
               Thêm
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
