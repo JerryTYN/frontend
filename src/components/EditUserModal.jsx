@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { API_ROUTES, axiosInstance } from '../cons';
 
 const faculties = [
-    'Unknow',
+    '-- Chọn khoa --',
     'Công nghệ thông tin',
     'Khoa học máy tính',
     'Kỹ thuật phần mềm',

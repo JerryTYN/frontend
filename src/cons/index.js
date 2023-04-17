@@ -7,7 +7,8 @@ export const API_ROUTES = {
     updateProfile: '/api/User',
     resetPassword: '/api/User/ResetPassword',
     getListUser: '/api/User',
-    deleteUser: '/api/User'
+    deleteUser: '/api/User',
+    addUser: '/api/User',
 };
 
 export const axiosInstance = axios.create({
