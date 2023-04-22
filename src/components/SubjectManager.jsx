@@ -7,14 +7,21 @@ import { Subjects } from "../utils/subject";
 import MyDocument from "./MyDocument";
 import AddSubjectModal from "./AddSubjectModal";
 import { Route, Routes } from "react-router-dom";
+import UpdateSubjectModal from "./UpdateSubjectModal";
+import CloneSubjectModal from "./CloneSubjectModal";
 const SubjectManager = () => {
   const [addSubjectModal, setAddSubjectModal] = useState(false);
+
   const [numPages, setNumPages] = useState(null);
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
+  const [updateSubjectModal, setUpdateSubjectModal] = useState(false);
+  const [cloneSubjectModal, setCloneSubjectModal] = useState(false);
   const handleCloseModal = () => {
     setAddSubjectModal(false);
+    setUpdateSubjectModal(false);
+    setCloneSubjectModal(false);
   };
   return (
     <div className="flex h-[580px] bg-white rounded-md shadow-lg overflow-hidden">
@@ -69,7 +76,7 @@ const SubjectManager = () => {
           <div className="flex w-[850px] bg-gray-50 rounded-xl h-[460px] overflow-y-auto justify-center scrollbar-hide border-1  border-gray-900 ">
             {/* <center> */}
             {/* <div> */}
-              <MyDocument />
+            <MyDocument />
             {/* </div> */}
             {/* </center> */}
           </div>
@@ -80,10 +87,15 @@ const SubjectManager = () => {
             >
               Tạo môn học
             </button>
-            <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-yellow-400 to-yellow-700">
+            <button
+              className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-yellow-400 to-yellow-700"
+              onClick={() => setUpdateSubjectModal(true)}
+            >
               Chỉnh sửa môn học
             </button>
-            <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-blue-300 to-blue-700">
+            <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-blue-300 to-blue-700"
+             onClick={() => setCloneSubjectModal(true)}
+            >
               Sao chép môn học
             </button>
             <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-gray-300 to-gray-700">
@@ -95,7 +107,11 @@ const SubjectManager = () => {
           </div>
         </div>
       </div>
+      
       <AddSubjectModal visible={addSubjectModal} onClose={handleCloseModal} />
+      
+      <UpdateSubjectModal visible={updateSubjectModal} onClose={handleCloseModal} />
+      <CloneSubjectModal visible={cloneSubjectModal} onClose={handleCloseModal} />
     </div>
   );
 };

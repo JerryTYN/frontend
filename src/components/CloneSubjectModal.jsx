@@ -11,7 +11,7 @@ const faculties = [
   "Hệ thống thông tin",
   //   "Công nghệ ô tô",
 ];
-const AddSubjectModal = ({ visible, onClose }) => {
+const CloneSubjectModal = ({ visible, onClose }) => {
   const [chuanDauRa, setChuanDauRa] = useState("");
   const [noiDungGD, setNoiDungGD] = useState("");
   const [noiDungHD, setNoiDungHD] = useState("");
@@ -348,7 +348,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
       <div className="flex-row w-[1100px] h-[600px] bg-white overflow-auto  rounded ">
         <div className="sticky top-0 z-40 flex justify-between w-full bg-gray-100 p-2.5">
-          <h1 className="text-2xl ">Thêm môn học</h1>
+          <h1 className="text-2xl ">Sao chép môn học</h1>
           <button
             onClick={onClose}
             type="button"
@@ -1045,4 +1045,4 @@ const AddSubjectModal = ({ visible, onClose }) => {
   );
 };
 
-export default AddSubjectModal;
+export default CloneSubjectModal;
