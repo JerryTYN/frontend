@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { RiAdminFill } from "react-icons/ri";
 import { Menus } from "../utils/menus";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
 import ProcessManager from "../components/ProcessManager";
 import SubjectManager from "../components/SubjectManager";
 import TeacherManager from "../components/TeacherManager";
 import UserProfile from "../components/UserProfile";
 import { API_ROUTES, axiosInstance } from "../cons";
-
+const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
+const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize';
 const Home = () => {
   const [open, setOpen] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -87,36 +88,59 @@ const Home = () => {
           <hr class="justify-center w-48 h-1 mx-auto my-4 bg-gray-900 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
         </div>
 
-        <ul className="pt-2">
+        {/* <ul className="pt-2"> */}
+        <div className="flex flex-col space-y-6">
           {Menus.map((menu, index) => {
             // console.log(userInfo.roles, menu);
+            // if (userInfo) {
+            //   // console.log(userInfo)
+            //   if (menu.roles.includes(userInfo.roles)) {
+            //     return (
+            //       <NavLink to={`/Home/${menu.url}`} key={index} >
+            //         <li className="flex items-center p-2 mt-2 text-sm font-bold text-gray-900 rounded-md cursor-pointer gap-x-4 hover:bg-stone-100 hover:text-gray-950">
+            //           <span
+            //             className="block float-left text-2xl rounded-lg shadow-lg bg-stone-50"
+            //             onClick={() => setOpen(!open)}
+            //           >
+            //             {menu.icon}
+            //           </span>
+            //           <span
+            //             className={`flex-1 text-base font-medium duration-200 ${
+            //               !open && "hidden"
+            //             }`}
+            //           >
+            //             {menu.title}
+            //           </span>
+            //         </li>
+            //       </NavLink>
+            //     );
+            //   }
+            // }
             if (userInfo) {
               // console.log(userInfo)
               if (menu.roles.includes(userInfo.roles)) {
                 return (
-                  <Link to={`/Home/${menu.url}`} key={index}>
-                    <li className="flex items-center p-2 mt-2 text-sm font-bold text-gray-900 rounded-md cursor-pointer gap-x-4 hover:bg-stone-100 hover:text-gray-950">
-                      <span
-                        className="block float-left text-2xl rounded-lg shadow-lg bg-stone-50"
-                        onClick={() => setOpen(!open)}
-                      >
-                        {menu.icon}
-                      </span>
-                      <span
-                        className={`flex-1 text-base font-medium duration-200 ${
-                          !open && "hidden"
-                        }`}
-                      >
-                        {menu.title}
-                      </span>
-                    </li>
-                  </Link>
+                  <NavLink to={`/Home/${menu.url}`} key={index} className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}>
+                    <span
+                      className="block float-left text-2xl rounded-lg shadow-lg bg-stone-50"
+                      onClick={() => setOpen(!open)}
+                    >
+                      {menu.icon}
+                    </span>
+                    <span
+                      className={`flex-1 text-base font-medium duration-200 ${
+                        !open && "hidden"
+                      }`}
+                    >
+                      {menu.title}
+                    </span>
+                  </NavLink>
                 );
               }
-
             }
           })}
-        </ul>
+          {/* </ul> */}
+        </div>
       </div>
       <div className="flex-1">
         <div className="w-full h-10">
@@ -162,7 +186,7 @@ const Home = () => {
                 className="pl-2 border border-gray-400 rounded-md shadow-md border-1"
               >
                 <h1 className="float-left text-base font-bold text-gray-900 text-end">
-                 Xin chào, {userInfo ? userInfo.fullName : "ABC"}  
+                  Xin chào, {userInfo ? userInfo.fullName : "ABC"}
                 </h1>
                 <svg
                   className="w-4 h-4 mx-1.5 m-1"

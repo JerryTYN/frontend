@@ -3,9 +3,12 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import MyDocument from './MyDocument';
 import AddSubjectModal from './AddSubjectModal';
 import { API_ROUTES, axiosInstance } from '../cons';
-
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import UpdateSubjectModal from './UpdateSubjectModal';
+import CloneSubjectModal from './CloneSubjectModal';
 const SubjectManager = () => {
     const [addSubjectModal, setAddSubjectModal] = useState(false);
+
     const [subjects, setSubjects] = useState([]);
     const [subject, setSubject] = useState();
 
@@ -21,13 +24,20 @@ const SubjectManager = () => {
             });
     }, []);
 
+    const [updateSubjectModal, setUpdateSubjectModal] = useState(false);
+    const [cloneSubjectModal, setCloneSubjectModal] = useState(false);
     const handleCloseModal = () => {
         setAddSubjectModal(false);
+        setUpdateSubjectModal(false);
+        setCloneSubjectModal(false);
     };
+    const [selectedSubject, setSelectedSubject] = useState(null);
 
     const getSubjectHandler = (sj) => {
+        setSelectedSubject(sj.name);
+
         axiosInstance
-            .get(API_ROUTES.getSubject + `?id=${sj}`, {
+            .get(API_ROUTES.getSubject + `?id=${sj.id}`, {
                 headers: {
                     Authorization: 'bearer ' + sessionStorage.getItem('token'),
                 },
@@ -79,8 +89,12 @@ const SubjectManager = () => {
                     {subjects.map((sj, id) => (
                         <div
                             key={id}
-                            className="w-full p-2 text-base text-gray-900 hover:bg-stone-50 hover:rounded-lg hover:cursor-pointer"
-                            onClick={() => getSubjectHandler(sj.id)}
+                            className={`w-full p-2 text-base text-gray-900  hover:rounded-lg hover:cursor-pointer ${
+                                selectedSubject === sj.name
+                                    ? 'bg-blue-500 rounded-lg text-white'
+                                    : ''
+                            }`}
+                            onClick={() => getSubjectHandler(sj)}
                         >
                             {sj.name}
                         </div>
@@ -100,27 +114,43 @@ const SubjectManager = () => {
                     <div className="flex justify-end pt-4 pr-4 space-x-10 text-center">
                         <button
                             onClick={() => setAddSubjectModal(true)}
-                            className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-green-400 to-green-700"
+                            className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-green-500 "
                         >
                             Tạo môn học
                         </button>
-                        <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-yellow-400 to-yellow-700">
+                        <button
+                            className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-yellow-500 "
+                            onClick={() => setUpdateSubjectModal(true)}
+                        >
                             Chỉnh sửa môn học
                         </button>
-                        <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-blue-300 to-blue-700">
+                        <button
+                            className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-blue-500"
+                            onClick={() => setCloneSubjectModal(true)}
+                        >
                             Sao chép môn học
                         </button>
-                        <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-gray-300 to-gray-700">
+                        <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-gray-500 ">
                             In môn học
                         </button>
-                        <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-50 rounded-lg bg-gradient-to-tl from-red-300 to-red-700">
+                        <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-red-500">
                             Xóa môn học
                         </button>
                     </div>
                 </div>
             </div>
+
             <AddSubjectModal
                 visible={addSubjectModal}
+                onClose={handleCloseModal}
+            />
+
+            <UpdateSubjectModal
+                visible={updateSubjectModal}
+                onClose={handleCloseModal}
+            />
+            <CloneSubjectModal
+                visible={cloneSubjectModal}
                 onClose={handleCloseModal}
             />
         </div>
