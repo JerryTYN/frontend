@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const API_ROUTES = {
+    // USER
     login: '/api/Auth/login',
     getUserInfo: '/api/User/getCurrentUserInfo',
     changePassword: '/api/User/ChangePassword',
@@ -9,6 +10,10 @@ export const API_ROUTES = {
     getListUser: '/api/User',
     deleteUser: '/api/User',
     addUser: '/api/User',
+
+    // SUBJECT
+    getSubjects: '/api/Subject',
+    getSubject: '/api/Subject/GetById',
 };
 
 export const axiosInstance = axios.create({

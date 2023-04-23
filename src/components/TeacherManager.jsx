@@ -119,7 +119,9 @@ const TeacherManager = ({ title }) => {
                     <tbody>
                         {users
                             .filter((u) =>
-                                u.fullName.toLowerCase().includes(searchUser)
+                                u.fullName
+                                    .toLowerCase()
+                                    .includes(searchUser.toLowerCase())
                             )
                             .map((u, index) => (
                                 <tr
