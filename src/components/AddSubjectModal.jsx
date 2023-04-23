@@ -579,8 +579,11 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         <div className="flex flex-col w-64 ">
                             <label>Mô tả vắn tắt</label>
                         </div>
-                        <div className="flex w-full ">
-                            <textarea type="text" className="w-full" />
+                        <div className="flex w-full pl-12">
+                            <textarea
+                                type="text"
+                                className="w-full border-2 rounded-md"
+                            />
                         </div>
                     </div>
                     <div className="flex flex-row w-full ">
@@ -825,8 +828,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         </h2>
                         <div className="flex flex-row w-full">
                             <div className="w-[1100px] relative flex flex-col text-sm text-gray-500">
-                                <table className="w-full text-sm border border-gray-400">
-                                    <thead className="border border-gray-400">
+                                <table className="w-full text-sm">
+                                    <thead className="">
                                         <tr>
                                             <th
                                                 scope="col"
@@ -1105,7 +1108,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody className="text-sm border border-gray-400 ">
+                                    <tbody className="text-sm">
                                         {tableRowTPDG.map((item, i) => {
                                             return (
                                                 <tr
@@ -1138,7 +1141,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         />
                                                     </td>
 
-                                                    <td className="w-5 border-none">
+                                                    <td className="w-10 pl-4">
                                                         {item.id === 0 ? (
                                                             <button
                                                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
@@ -1174,15 +1177,15 @@ const AddSubjectModal = ({ visible, onClose }) => {
                 </button> */}
                             </div>
                         </div>
-                        <h3>c.Thang điểm đánh giá: Học theo chế tín chỉ</h3>
+                        <h3>c.Thang điểm đánh giá: Theo học chế tín chỉ</h3>
                     </div>
                     <div className="flex items-center justify-end space-x-6 pb-8">
                         <button className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold hover:bg-green-300 hover:text-gray-800">
                             Lưu
                         </button>
-                        <button className="w-[90px] text-gray-50 h-12 bg-blue-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
+                        {/* <button className="w-[90px] text-gray-50 h-12 bg-blue-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
                             Xem lại
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>
