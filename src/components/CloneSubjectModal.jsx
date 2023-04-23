@@ -731,6 +731,7 @@ const CloneSubjectModal = ({ visible, onClose }) => {
                       <th scope="col " className="border border-gray-400 ">
                         SO/PI
                       </th>
+                      
                     </tr>
                   </thead>
                   <tbody className="text-sm border border-gray-400 ">
@@ -756,7 +757,7 @@ const CloneSubjectModal = ({ visible, onClose }) => {
                             <textarea rows="auto" cols="auto" />
                           </td>
 
-                          <td className="border border-gray-400 ">
+                          <td className="border border-gray-400">
                             {item.id === 0 ? (
                               <button
                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
@@ -773,6 +774,7 @@ const CloneSubjectModal = ({ visible, onClose }) => {
                               </button>
                             )}
                           </td>
+                          
                         </tr>
                       );
                     })}

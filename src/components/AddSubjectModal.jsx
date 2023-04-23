@@ -270,17 +270,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
         {
             id: 0,
             value: '',
-            className: 'border border-gray-400',
+            className: '',
         },
     ];
     const [tableRowCDR, setTableRowCDR] = useState(rowCDR);
     const addTableRowCDR = () => {
         setTableRowCDR((r) => {
             const lastId = r[r.length - 1].id;
-            return [
-                ...r,
-                { id: 1, value: '', className: 'border border-gray-400' },
-            ];
+            return [...r, { id: 1, value: '', className: '' }];
         });
     };
     const deleteTableRowsCDR = (index) => {
@@ -292,17 +289,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
         {
             id: 0,
             value: '',
-            className: 'border border-gray-400',
+            className: '',
         },
     ];
     const [tableRowKHGD, setTableRowKHGD] = useState(rowKHGD);
     const addTableRowKHGD = () => {
         setTableRowKHGD((r) => {
             const lastId = r[r.length - 1].id;
-            return [
-                ...r,
-                { id: 1, value: '', className: 'border border-gray-400' },
-            ];
+            return [...r, { id: 1, value: '', className: '' }];
         });
     };
     const deleteTableRowsKHGD = (index) => {
@@ -314,17 +308,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
         {
             id: 0,
             value: '',
-            className: 'border border-gray-400',
+            className: '',
         },
     ];
     const [tableRowPPDG, setTableRowPPDG] = useState(rowPPDG);
     const addTableRowPPDG = () => {
         setTableRowPPDG((r) => {
             const lastId = r[r.length - 1].id;
-            return [
-                ...r,
-                { id: 1, value: '', className: 'border border-gray-400' },
-            ];
+            return [...r, { id: 1, value: '', className: '' }];
         });
     };
     const deleteTableRowsPPDG = (index) => {
@@ -337,17 +328,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
         {
             id: 0,
             value: '',
-            className: 'border border-gray-400',
+            className: '',
         },
     ];
     const [tableRowTPDG, setTableRowTPDG] = useState(rowTPDG);
     const addTableRowTPDG = () => {
         setTableRowTPDG((r) => {
             const lastId = r[r.length - 1].id;
-            return [
-                ...r,
-                { id: 1, value: '', className: 'border border-gray-400' },
-            ];
+            return [...r, { id: 1, value: '', className: '' }];
         });
     };
     const deleteTableRowsTPDG = (index) => {
@@ -742,8 +730,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
                     <div className="flex flex-col justify-between w-full space-y-2">
                         <div className="flex flex-row w-full">
                             <div className="relative w-[1100px]">
-                                <table className="w-full text-sm border border-gray-400">
-                                    <thead className="border border-gray-400">
+                                <table className="w-full text-sm ">
+                                    <thead>
                                         <tr>
                                             <th
                                                 scope="col"
@@ -764,9 +752,10 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                             >
                                                 SO/PI
                                             </th>
+                                            <th className="border-none"></th>
                                         </tr>
                                     </thead>
-                                    <tbody className="text-sm border border-gray-400 ">
+                                    <tbody className="text-sm ">
                                         {tableRowCDR.map((item, i) => {
                                             return (
                                                 <tr
@@ -788,14 +777,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         <textarea className="w-full break-all"></textarea>
                                                     </td>
 
-                                                    <td className="relative flex w-40 pt-2">
+                                                    <td className="w-40 pt-2 border border-gray-400 ">
                                                         <textarea
                                                             rows="auto"
                                                             cols="auto"
                                                         />
                                                     </td>
 
-                                                    <td className="border border-gray-400 ">
+                                                    <td className="w-10 pl-4">
                                                         {item.id === 0 ? (
                                                             <button
                                                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
@@ -878,7 +867,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody className="text-sm border border-gray-400 ">
+                                    <tbody className="text-sm ">
                                         {tableRowKHGD.map((item, i) => {
                                             return (
                                                 <tr
@@ -900,7 +889,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             }
                                                         />
                                                     </td>
-                                                    <td className="relative w-12 p-2 break-all">
+                                                    <td className="relative w-12 p-2 break-all border border-gray-400">
                                                         <input
                                                             type="number"
                                                             min={0}
@@ -919,7 +908,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             className="w-full border-b-2 focus:outline-none"
                                                         />
                                                     </td>
-                                                    <td className="relative p-2 break-all border border-gray-400 w-72">
+                                                    <td className="p-2 break-all border border-gray-400 w-72">
                                                         <ReactQuill
                                                             theme="snow"
                                                             // value={value}
@@ -928,7 +917,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             }
                                                         />
                                                     </td>
-                                                    <td className="border-none">
+                                                    <td className="w-10 pl-4">
                                                         {item.id === 0 ? (
                                                             <button
                                                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
@@ -973,8 +962,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         </h3>
                         <div className="flex flex-row w-full">
                             <div className=" relative w-[1100px] flex flex-col text-sm text-gray-500">
-                                <table className="w-full text-sm border border-gray-400">
-                                    <thead className="border border-gray-400">
+                                <table className="w-full text-sm ">
+                                    <thead className="">
                                         <tr>
                                             <th
                                                 scope="col"
@@ -999,11 +988,17 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                 scope="col "
                                                 className="border border-gray-400 "
                                             >
-                                                Tỉ trọng
+                                                Tỉ trọng (%)
+                                            </th>
+                                            <th
+                                                scope="col "
+                                                className="border border-gray-400 "
+                                            >
+                                                Chỉ tiêu (%)
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody className="text-sm border border-gray-400 ">
+                                    <tbody className="text-sm ">
                                         {tableRowPPDG.map((item, i) => {
                                             return (
                                                 <tr
@@ -1012,32 +1007,44 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                 >
                                                     <th
                                                         scope="row"
-                                                        className="w-10 font-medium border border-gray-400"
+                                                        className="w-10 p-2 font-medium border border-gray-400"
                                                     >
-                                                        {i + 1}
+                                                        <input
+                                                            type="number"
+                                                            className="w-full text-center border-b-2 focus:outline-none"
+                                                            min={0}
+                                                        />
                                                     </th>
-                                                    <td className="relative break-all border border-gray-400 w-96">
+                                                    <td className="relative p-2 break-all border border-gray-400 w-96">
                                                         <input
                                                             type="text"
                                                             className="w-full border-b-2 focus:outline-none"
                                                         />
                                                     </td>
-                                                    <td className="relative break-all border border-gray-400 w-[500px]">
+                                                    <td className="relative break-all border border-gray-400 w-[500px] p-2">
                                                         <input
                                                             type="text"
                                                             className="w-full border-b-2 focus:outline-none"
                                                         />
                                                     </td>
-                                                    <td className="relative w-32 break-all border border-gray-400">
+                                                    <td className="relative w-32 p-2 break-all border border-gray-400">
                                                         <input
-                                                            type="text"
+                                                            type="number"
                                                             className="w-full border-b-2 focus:outline-none"
+                                                            min={0}
                                                         />
                                                     </td>
-                                                    <td className="border border-gray-400 ">
+                                                    <td className="relative w-32 p-2 break-all border border-gray-400">
+                                                        <input
+                                                            type="number"
+                                                            className="w-full border-b-2 focus:outline-none"
+                                                            min={0}
+                                                        />
+                                                    </td>
+                                                    <td className="w-10 pl-4">
                                                         {item.id === 0 ? (
                                                             <button
-                                                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                                 onClick={
                                                                     addTableRowPPDG
                                                                 }
@@ -1046,7 +1053,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             </button>
                                                         ) : (
                                                             <button
-                                                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                                                 onClick={() =>
                                                                     deleteTableRowsPPDG(
                                                                         i
@@ -1073,8 +1080,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         <h3>b.Các thành phần đánh giá</h3>
                         <div className="flex flex-row w-full">
                             <div className=" relative w-[1100px] flex flex-col text-sm text-gray-500">
-                                <table className="w-full text-sm border border-gray-400">
-                                    <thead className="border border-gray-400">
+                                <table className="w-full text-sm ">
+                                    <thead className="">
                                         <tr>
                                             <th
                                                 scope="col"
@@ -1131,10 +1138,10 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         />
                                                     </td>
 
-                                                    <td className="border-none w-5">
+                                                    <td className="w-5 border-none">
                                                         {item.id === 0 ? (
                                                             <button
-                                                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                                 onClick={
                                                                     addTableRowTPDG
                                                                 }
@@ -1143,7 +1150,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             </button>
                                                         ) : (
                                                             <button
-                                                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                                                 onClick={() =>
                                                                     deleteTableRowsTPDG(
                                                                         i

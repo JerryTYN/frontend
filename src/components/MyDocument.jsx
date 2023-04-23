@@ -435,45 +435,27 @@ const MyDocument = ({ data }) => {
                                             >
                                                 Tỉ trọng
                                             </th>
+                                            <th
+                                                scope="col "
+                                                className="pl-2 border border-gray-400"
+                                            >
+                                                Chỉ tiêu
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody className="text-sm border border-gray-400 ">
-                                        {data ? (
-                                            data.evaluates.map((e) => (
-                                                <tr
-                                                    key={e.id}
-                                                    className="border border-gray-400 "
-                                                >
-                                                    <th
-                                                        scope="row"
-                                                        className="w-10 font-medium border border-gray-400"
-                                                    >
-                                                        {e.clo}
-                                                    </th>
-                                                    <td className="relative pl-2 break-all border border-gray-400 w-96">
-                                                        {e.test}
-                                                    </td>
-                                                    <td className="relative pl-2 break-all border border-gray-400 w-96">
-                                                        {e.method}
-                                                    </td>
-                                                    <td className="relative w-32 pl-2 break-all border border-gray-400">
-                                                        {e.proportion}
-                                                    </td>
-                                                </tr>
-                                            ))
-                                        ) : (
-                                            <tr className="border border-gray-400 ">
-                                                <th
-                                                    scope="row"
-                                                    className="w-10 font-medium border border-gray-400"
-                                                >
-                                                    1
-                                                </th>
-                                                <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
-                                                <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
-                                                <td className="relative w-32 pl-2 break-all border border-gray-400"></td>
-                                            </tr>
-                                        )}
+                                        <tr className="border border-gray-400 ">
+                                            <th
+                                                scope="row"
+                                                className="w-10 font-medium border border-gray-400"
+                                            >
+                                                1
+                                            </th>
+                                            <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
+                                            <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
+                                            <td className="relative w-32 pl-2 break-all border border-gray-400"></td>
+                                            <td className="relative w-32 pl-2 break-all border border-gray-400"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </Text>
