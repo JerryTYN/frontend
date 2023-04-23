@@ -346,9 +346,9 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
   if (!visible) return null;
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
-      <div className="flex-row w-[1100px] h-[600px] bg-white overflow-auto  rounded ">
-        <div className="sticky top-0 z-40 flex justify-between w-full bg-gray-100 p-2.5">
-          <h1 className="text-2xl ">Cập nhật môn học</h1>
+      <div className="flex-row w-[1100px] h-[600px] bg-white  overflow-auto  rounded ">
+        <div className="sticky top-0 z-40 flex justify-between w-full bg-black p-2.5">
+          <h1 className="pl-4 text-2xl text-white">Chỉnh sửa môn học</h1>
           <button
             onClick={onClose}
             type="button"
@@ -370,9 +370,9 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
             </svg>
           </button>
         </div>
-        <div className="flex flex-col w-full h-full space-y-4 pt-10 p-6">
+        <div className="flex flex-col w-full h-full p-6 pt-10 space-y-4">
           <h2 className="text-xl font-bold">Thông tin môn học</h2>
-          <div className="flex flex-row items-left justify-center w-full space-x-16">
+          <div className="flex flex-row justify-center w-full space-x-16 items-left">
             <div className="flex flex-col w-64 ">
               <label>Tên học phần</label>
             </div>
@@ -383,7 +383,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
               />
             </div>
           </div>
-          <div className="flex flex-row items-left justify-center w-full space-x-16 ">
+          <div className="flex flex-row justify-center w-full space-x-16 items-left ">
             <div className="flex flex-col w-64 ">
               <label>Mã học phần</label>
             </div>
@@ -394,47 +394,51 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
               />
             </div>
           </div>
-          <div className="flex flex-row items-left justify-center w-full space-x-16">
+          <div className="flex flex-row justify-center w-full space-x-16 items-left">
             <div className="flex flex-col w-64 ">
               <label>Lý thuyết</label>
             </div>
             <div className="flex w-full ">
               <input
-                type="text"
-                className="w-[354.4px] border-b-2 focus:outline-none"
+                type="number"
+                className="w-10 border-b-2 focus:outline-none"
+                min={0}
               />
             </div>
           </div>
-          <div className="flex flex-row items-left justify-center w-full space-x-16 ">
+          <div className="flex flex-row justify-center w-full space-x-16 items-left ">
             <div className="flex flex-col w-64 ">
               <label>Thực hành</label>
             </div>
             <div className="flex w-full ">
               <input
-                type="text"
-                className="w-[354.4px] border-b-2 focus:outline-none"
+                type="number"
+                className="w-10 border-b-2 focus:outline-none"
+                min={0}
               />
             </div>
           </div>
-          <div className="flex flex-row items-left justify-center w-full space-x-16 ">
+          <div className="flex flex-row justify-center w-full space-x-16 items-left ">
             <div className="flex flex-col w-64 ">
               <label>Tự học</label>
             </div>
             <div className="flex w-full ">
               <input
-                type="text"
-                className="w-[354.4px] border-b-2 focus:outline-none"
+                type="number"
+                className="w-10 border-b-2 focus:outline-none"
+                min={0}
               />
             </div>
           </div>
-          <div className="flex flex-row items-left justify-center w-full space-x-16 ">
+          <div className="flex flex-row justify-center w-full space-x-16 items-left ">
             <div className="flex flex-col w-64 ">
               <label>Tổng tín chỉ</label>
             </div>
             <div className="flex w-full ">
               <input
                 type="text"
-                className="w-[354.4px] border-b-2 focus:outline-none"
+                className="w-10 border-b-2 focus:outline-none"
+                disabled
               />
             </div>
           </div>
@@ -456,14 +460,14 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
-                        className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                        className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputGVPT}
                       >
                         +
                       </button>
                     ) : (
                       <button
-                        className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                        className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputGVPT(i)}
                       >
                         -
@@ -474,7 +478,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
               })}
             </div>
             {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputGVPT}
             >
               +
@@ -498,14 +502,14 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
-                        className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                        className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputTLHT}
                       >
                         +
                       </button>
                     ) : (
                       <button
-                        className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                        className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputTLHT(i)}
                       >
                         -
@@ -516,7 +520,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
               })}
             </div>
             {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputTLHT}
             >
               +
@@ -541,14 +545,14 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
-                        className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                        className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputMTHP}
                       >
                         +
                       </button>
                     ) : (
                       <button
-                        className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                        className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputMTHP(i)}
                       >
                         -
@@ -559,7 +563,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
               })}
             </div>
             {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputMTHP}
             >
               +
@@ -569,8 +573,8 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
             <div className="flex flex-col w-64 ">
               <label>Mô tả vắn tắt</label>
             </div>
-            <div className="flex w-full ">
-              <textarea type="text" className="w-full" />
+            <div className="flex w-full pl-12">
+              <textarea type="text" className="w-full border-2 rounded-md" />
             </div>
           </div>
           <div className="flex flex-row w-full ">
@@ -591,14 +595,14 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
-                        className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                        className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputHPHT}
                       >
                         +
                       </button>
                     ) : (
                       <button
-                        className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                        className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputHPHT(i)}
                       >
                         -
@@ -609,7 +613,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
               })}
             </div>
             {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputHPHT}
             >
               +
@@ -633,14 +637,14 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
-                        className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                        className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputHPTQ}
                       >
                         +
                       </button>
                     ) : (
                       <button
-                        className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                        className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputHPTQ(i)}
                       >
                         -
@@ -651,7 +655,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
               })}
             </div>
             {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputHPTQ}
             >
               +
@@ -675,14 +679,14 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
-                        className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                        className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputHPSH}
                       >
                         +
                       </button>
                     ) : (
                       <button
-                        className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                        className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputHPSH(i)}
                       >
                         -
@@ -693,7 +697,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
               })}
             </div>
             {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputHPSH}
             >
               +
@@ -703,8 +707,8 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
             <div className="flex flex-col w-64 ">
               <label>Yêu cầu khác</label>
             </div>
-            <div className="flex w-full ">
-              <textarea type="text" className="w-full" />
+            <div className="flex w-full pl-12">
+              <textarea type="text" className="w-full border-2 rounded-md" />
             </div>
           </div>
           <h2 className="text-xl font-bold">Chuẩn đầu ra môn học</h2>
@@ -729,39 +733,40 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="text-sm border border-gray-400">
+                  <tbody className="text-sm border border-gray-400 ">
                     {tableRowCDR.map((item, i) => {
                       return (
                         <tr id={i} className={item.className}>
-                          <th
+                          <td
                             scope="row"
-                            className="w-10 font-medium border border-gray-400 "
+                            className="w-10 font-medium text-center border border-gray-400 "
                           >
                             {i + 1}
-                          </th>
-                          <td className=" border relative w-[800px] border-gray-400 break-all">
-                            <ReactQuill
+                          </td>
+                          <td className=" border pt-2 relative w-[800px] border-gray-400  ">
+                            {/* <ReactQuill
                               theme="snow"
                               // value={value}
                               onChange={setChuanDauRa}
-                            />
+                            /> */}
+                            <textarea className="w-full break-all"></textarea>
                           </td>
 
-                          <td className="flex  w-40  ">
+                          <td className="relative flex w-40 pt-2">
                             <textarea rows="auto" cols="auto" />
                           </td>
 
-                          <td className="border border-gray-400">
+                          <td className="border border-gray-400 ">
                             {item.id === 0 ? (
                               <button
-                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                 onClick={addTableRowCDR}
                               >
                                 +
                               </button>
                             ) : (
                               <button
-                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                 onClick={() => deleteTableRowsCDR(i)}
                               >
                                 -
@@ -827,16 +832,26 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                               onChange={setNoiDungGD}
                             />
                           </td>
-                          <td className="relative break-all border border-gray-400 w-28">
-                            <textarea cols="auto" rows="auto" />
+                          <td className="relative w-12 p-2 break-all">
+                            <input
+                              type="number"
+                              min={0}
+                              className="w-10 text-center border-b-2 focus:outline-none"
+                            />
                           </td>
-                          <td className="relative w-24 break-all border border-gray-400 ">
-                            <textarea cols="auto" rows="auto" />
+                          <td className="relative w-24 p-2 break-all border border-gray-400">
+                            <input
+                              type="text"
+                              className="w-full border-b-2 focus:outline-none"
+                            />
                           </td>
-                          <td className="relative w-40 break-all border border-gray-400 ">
-                            <textarea cols="auto" rows="auto" />
+                          <td className="relative w-40 p-2 break-all border border-gray-400">
+                            <input
+                              type="text"
+                              className="w-full border-b-2 focus:outline-none"
+                            />
                           </td>
-                          <td className="relative break-all border border-gray-400 w-72">
+                          <td className="relative p-2 break-all border border-gray-400 w-72">
                             <ReactQuill
                               theme="snow"
                               // value={value}
@@ -846,14 +861,14 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                           <td className="border-none">
                             {item.id === 0 ? (
                               <button
-                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                 onClick={addTableRowKHGD}
                               >
                                 +
                               </button>
                             ) : (
                               <button
-                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                 onClick={() => deleteTableRowsKHGD(i)}
                               >
                                 -
@@ -891,7 +906,10 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                         Phương pháp đánh giá
                       </th>
                       <th scope="col " className="border border-gray-400 ">
-                        Tỉ trọng
+                        Tỉ trọng (%)
+                      </th>
+                      <th scope="col " className="border border-gray-400 ">
+                        Chỉ tiêu (%)
                       </th>
                     </tr>
                   </thead>
@@ -901,39 +919,48 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                         <tr id={i} className={item.className}>
                           <th
                             scope="row"
-                            className="w-10 font-medium border border-gray-400"
+                            className="w-10 p-2 font-medium border border-gray-400"
                           >
-                            {i + 1}
+                             <input
+                              type="number"
+                              className="w-full text-center border-b-2 focus:outline-none"       min={0}
+                            />
                           </th>
-                          <td className="relative break-all border border-gray-400 w-96">
+                          <td className="relative p-2 break-all border border-gray-400 w-96">
                             <input
                               type="text"
                               className="w-full border-b-2 focus:outline-none"
                             />
                           </td>
-                          <td className="relative break-all border border-gray-400 w-[500px]">
+                          <td className="relative break-all border border-gray-400 w-[500px] p-2">
                             <input
                               type="text"
                               className="w-full border-b-2 focus:outline-none"
                             />
                           </td>
-                          <td className="relative w-32 break-all border border-gray-400">
+                          <td className="relative w-32 p-2 break-all border border-gray-400">
                             <input
-                              type="text"
-                              className="w-full border-b-2 focus:outline-none"
+                              type="number"
+                              className="w-full border-b-2 focus:outline-none"       min={0}
+                            />
+                          </td>
+                          <td className="relative w-32 p-2 break-all border border-gray-400">
+                            <input
+                              type="number"
+                              className="w-full border-b-2 focus:outline-none"       min={0}
                             />
                           </td>
                           <td className="border border-gray-400 ">
                             {item.id === 0 ? (
                               <button
-                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                 onClick={addTableRowPPDG}
                               >
                                 +
                               </button>
                             ) : (
                               <button
-                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                 onClick={() => deleteTableRowsPPDG(i)}
                               >
                                 -
@@ -968,7 +995,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                       </th>
 
                       <th scope="col " className="border border-gray-400 ">
-                        Tỉ trọng
+                        Tỉ trọng (%)
                       </th>
                     </tr>
                   </thead>
@@ -978,38 +1005,40 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                         <tr id={i} className={item.className}>
                           <th
                             scope="row"
-                            className="font-medium border border-gray-400 w-82"
+                            className="p-2 font-medium border border-gray-400 w-82"
                           >
+                             <textarea
+                              type="text"
+                              className="w-full"
+                            ></textarea>
+                          </th>
+                          <td className="relative break-all border border-gray-400 w-[510px] p-2">
+                           
                             <ReactQuill
                               theme="snow"
                               // value={value}
                               onChange={setPhuongPhap}
                             />
-                          </th>
-                          <td className="relative break-all border border-gray-400 w-[510px]">
-                            <input
-                              type="text"
-                              className="w-full border-b-2 focus:outline-none"
-                            />
                           </td>
-                          <td className="relative w-24 break-all border border-gray-400">
+                          <td className="relative w-24 p-2 break-all border border-gray-400">
                             <input
-                              type="text"
-                              className="w-full border-b-2 focus:outline-none"
+                              type="number"
+                              className="w-full border-b-2 focus:outline-none "
+                              min={0}
                             />
                           </td>
 
-                          <td className="border-none w-5">
+                          <td className="w-5 border-none">
                             {item.id === 0 ? (
                               <button
-                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                 onClick={addTableRowTPDG}
                               >
                                 +
                               </button>
                             ) : (
                               <button
-                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                 onClick={() => deleteTableRowsTPDG(i)}
                               >
                                 -
@@ -1031,13 +1060,13 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
             </div>
             <h3>c.Thang điểm đánh giá: Học theo chế tín chỉ</h3>
           </div>
-          <div className="flex items-center justify-end space-x-6 pb-8">
+          <div className="flex items-center justify-end pb-8 space-x-6">
             <button className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold hover:bg-green-300 hover:text-gray-800">
               Lưu
             </button>
-            <button className="w-[90px] text-gray-50 h-12 bg-blue-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
-              Xem lại
-            </button>
+            {/* <button className="w-[90px] text-gray-50 h-12 bg-red-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
+              Hủy
+            </button> */}
           </div>
         </div>
       </div>

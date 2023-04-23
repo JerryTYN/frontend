@@ -573,8 +573,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
             <div className="flex flex-col w-64 ">
               <label>Mô tả vắn tắt</label>
             </div>
-            <div className="flex w-full ">
-              <textarea type="text" className="w-full" />
+            <div className="flex w-full pl-12">
+              <textarea type="text" className="w-full border-2 rounded-md" />
             </div>
           </div>
           <div className="flex flex-row w-full ">
@@ -707,8 +707,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
             <div className="flex flex-col w-64 ">
               <label>Yêu cầu khác</label>
             </div>
-            <div className="flex w-full ">
-              <textarea type="text" className="w-full" />
+            <div className="flex w-full pl-12">
+              <textarea type="text" className="w-full border-2 rounded-md" />
             </div>
           </div>
           <h2 className="text-xl font-bold">Chuẩn đầu ra môn học</h2>
@@ -739,7 +739,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         <tr id={i} className={item.className}>
                           <td
                             scope="row"
-                            className="w-10 font-medium border border-gray-400 "
+                            className="w-10 font-medium text-center border border-gray-400 "
                           >
                             {i + 1}
                           </td>
@@ -756,7 +756,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             <textarea rows="auto" cols="auto" />
                           </td>
 
-                          <td className="border border-gray-400">
+                          <td className="border border-gray-400 ">
                             {item.id === 0 ? (
                               <button
                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
@@ -906,7 +906,10 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         Phương pháp đánh giá
                       </th>
                       <th scope="col " className="border border-gray-400 ">
-                        Tỉ trọng
+                        Tỉ trọng (%)
+                      </th>
+                      <th scope="col " className="border border-gray-400 ">
+                        Chỉ tiêu (%)
                       </th>
                     </tr>
                   </thead>
@@ -916,26 +919,35 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         <tr id={i} className={item.className}>
                           <th
                             scope="row"
-                            className="w-10 font-medium border border-gray-400"
+                            className="w-10 p-2 font-medium border border-gray-400"
                           >
-                            {i + 1}
+                             <input
+                              type="number"
+                              className="w-full text-center border-b-2 focus:outline-none"       min={0}
+                            />
                           </th>
-                          <td className="relative break-all border border-gray-400 w-96">
+                          <td className="relative p-2 break-all border border-gray-400 w-96">
                             <input
                               type="text"
                               className="w-full border-b-2 focus:outline-none"
                             />
                           </td>
-                          <td className="relative break-all border border-gray-400 w-[500px]">
+                          <td className="relative break-all border border-gray-400 w-[500px] p-2">
                             <input
                               type="text"
                               className="w-full border-b-2 focus:outline-none"
                             />
                           </td>
-                          <td className="relative w-32 break-all border border-gray-400">
+                          <td className="relative w-32 p-2 break-all border border-gray-400">
                             <input
-                              type="text"
-                              className="w-full border-b-2 focus:outline-none"
+                              type="number"
+                              className="w-full border-b-2 focus:outline-none"       min={0}
+                            />
+                          </td>
+                          <td className="relative w-32 p-2 break-all border border-gray-400">
+                            <input
+                              type="number"
+                              className="w-full border-b-2 focus:outline-none"       min={0}
                             />
                           </td>
                           <td className="border border-gray-400 ">
@@ -983,7 +995,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                       </th>
 
                       <th scope="col " className="border border-gray-400 ">
-                        Tỉ trọng
+                        Tỉ trọng (%)
                       </th>
                     </tr>
                   </thead>
@@ -993,24 +1005,26 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         <tr id={i} className={item.className}>
                           <th
                             scope="row"
-                            className="font-medium border border-gray-400 w-82"
+                            className="p-2 font-medium border border-gray-400 w-82"
                           >
+                             <textarea
+                              type="text"
+                              className="w-full"
+                            ></textarea>
+                          </th>
+                          <td className="relative break-all border border-gray-400 w-[510px] p-2">
+                           
                             <ReactQuill
                               theme="snow"
                               // value={value}
                               onChange={setPhuongPhap}
                             />
-                          </th>
-                          <td className="relative break-all border border-gray-400 w-[510px]">
-                            <input
-                              type="text"
-                              className="w-full border-b-2 focus:outline-none"
-                            />
                           </td>
-                          <td className="relative w-24 break-all border border-gray-400">
+                          <td className="relative w-24 p-2 break-all border border-gray-400">
                             <input
-                              type="text"
-                              className="w-full border-b-2 focus:outline-none"
+                              type="number"
+                              className="w-full border-b-2 focus:outline-none "
+                              min={0}
                             />
                           </td>
 
@@ -1050,9 +1064,9 @@ const AddSubjectModal = ({ visible, onClose }) => {
             <button className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold hover:bg-green-300 hover:text-gray-800">
               Lưu
             </button>
-            <button className="w-[90px] text-gray-50 h-12 bg-red-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
+            {/* <button className="w-[90px] text-gray-50 h-12 bg-red-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
               Hủy
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

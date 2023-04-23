@@ -3,14 +3,18 @@ import React from "react";
 const ProcessManager = () => {
   return (
     <div className="flex-1 h-[585px] ">
-      <div className="w-full">
+      <div className="w-full p-2.5">
         <h1 className="font-bold text-md">Tên chương trình</h1>
       </div>
       <div className="flex flex-1 w-full p-2.5 rounded-lg bg-slate-100">
         <div className="flex flex-1 ">
           <div className="w-[200px] space-x-4">
             <label>Số lượng học kì:</label>
-            <input className="w-10 p-2 text-center rounded-md" type="number" min={2} />
+            <input
+              className="w-10 p-2 text-center border border-gray-600 rounded-md"
+              type="number"
+              min={2}
+            />
           </div>
           <div className="w-[200px] text-center ">
             <select className="p-2.5 rounded-lg border border-gray-600">
@@ -24,15 +28,14 @@ const ProcessManager = () => {
             <label className="text-center">Tổng tín chỉ:</label>
           </div>
           <div className="flex items-center justify-end flex-1 ">
-           <button className="bg-green-600 rounded-lg p-2.5 text-white font-semibold hover:bg-green-400">Xuất đề cương</button>
+            <button className="bg-green-600 rounded-lg p-2.5 text-white font-semibold hover:bg-green-400">
+              Xuất đề cương
+            </button>
           </div>
         </div>
       </div>
       <div className="flex-1 space-y-4">
-
-
-
-      <div className="relative space-y-5">
+        <div className="relative space-y-5">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg
               className="w-5 h-5 text-gray-500 "
@@ -56,51 +59,121 @@ const ProcessManager = () => {
           />
         </div>
         <div className=" h-[430px] bg-white rounded-b-lg shadow-xl overflow-auto">
-        <table className="w-full text-sm text-left text-gray-500 ">
-          <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Tên / Email
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Khoa
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Ngày sinh
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Nơi sinh
-              </th>
-              <th scope="col" className="px-12 py-3">
-                ●●●
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            
-                <tr className="bg-white border-b hover:bg-gray-50 ">
-                  <th
-                    scope="row"
-                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-                  >
-                    <div className="pl-3">
-                      <div className="text-base font-semibold">
-  
-                      </div>
-                      <div className="font-normal text-gray-500"></div>
-                    </div>
-                  </th>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4"></td>
-
-                  
-                </tr>
-              
-          </tbody>
-        </table>
-      </div>
-      
+          <table className="w-full text-sm text-left text-gray-500 ">
+            <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3"></th>
+                <th scope="col" className="px-6 py-3">
+                  Tên môn học
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Mã môn học
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Tổng số tín chỉ
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Lý thuyết
+                </th>
+                <th scope="col" className="px-12 py-3">
+                  Thực hành
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+              <tr className="bg-white border-b hover:bg-gray-50 ">
+                <td className="pl-4 text-center">
+                  <input type="checkbox" />
+                </td>
+                <td className="px-6 py-4">Tên môn học nè</td>
+                <td className="px-6 py-4">Mã môn học nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ lý thuyết nè</td>
+                <td className="px-6 py-4">Tổng tín chỉ thực hành nè</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
