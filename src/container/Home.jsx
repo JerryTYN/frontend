@@ -9,8 +9,8 @@ import SubjectManager from "../components/SubjectManager";
 import TeacherManager from "../components/TeacherManager";
 import UserProfile from "../components/UserProfile";
 import { API_ROUTES, axiosInstance } from "../cons";
-const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
-const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize';
+const isNotActiveStyle = 'flex items-center  gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
+const isActiveStyle = 'flex items-center  gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize';
 const Home = () => {
   const [open, setOpen] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -82,10 +82,10 @@ const Home = () => {
         </div>
         <div
           className={`flex items-center  py-2 rounded-md ${
-            !open ? "px-2.5" : "px-3"
+            !open ? "px-1" : "px-3"
           }`}
         >
-          <hr class="justify-center w-48 h-1 mx-auto my-4 bg-gray-900 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+          <hr class="justify-center w-48 h-1  my-4 bg-gray-900 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
         </div>
 
         {/* <ul className="pt-2"> */}
