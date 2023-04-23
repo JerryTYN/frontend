@@ -30,6 +30,16 @@ const SubjectManager = () => {
         setAddSubjectModal(false);
         setUpdateSubjectModal(false);
         setCloneSubjectModal(false);
+
+        axiosInstance
+            .get(API_ROUTES.getSubjects, {
+                headers: {
+                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
+                },
+            })
+            .then((data) => {
+                setSubjects(data.data);
+            });
     };
     const [selectedSubject, setSelectedSubject] = useState(null);
 
@@ -43,6 +53,29 @@ const SubjectManager = () => {
                 },
             })
             .then((data) => setSubject(data.data.result))
+            .catch((err) => console.log(err));
+    };
+
+    const handleDeleteSubject = () => {
+        axiosInstance
+            .delete(API_ROUTES.deleteSubject + `?id=${subject.id}`, {
+                headers: {
+                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
+                },
+            })
+            .then((data) => {
+                alert(data.data);
+                axiosInstance
+                    .get(API_ROUTES.getSubjects, {
+                        headers: {
+                            Authorization:
+                                'bearer ' + sessionStorage.getItem('token'),
+                        },
+                    })
+                    .then((data) => {
+                        setSubjects(data.data);
+                    });
+            })
             .catch((err) => console.log(err));
     };
 
@@ -133,7 +166,10 @@ const SubjectManager = () => {
                         <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-gray-500 ">
                             In môn học
                         </button>
-                        <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-red-500">
+                        <button
+                            className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-red-500"
+                            onClick={handleDeleteSubject}
+                        >
                             Xóa môn học
                         </button>
                     </div>

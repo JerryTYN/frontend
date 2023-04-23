@@ -14,6 +14,8 @@ export const API_ROUTES = {
     // SUBJECT
     getSubjects: '/api/Subject',
     getSubject: '/api/Subject/GetById',
+    createSubject: '/api/Subject',
+    deleteSubject: '/api/Subject',
 };
 
 export const axiosInstance = axios.create({

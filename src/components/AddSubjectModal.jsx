@@ -1,22 +1,10 @@
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Textarea } from '@material-tailwind/react';
-const faculties = [
-    'Unknow',
-    'Công nghệ thông tin',
-    'Khoa học máy tính',
-    'Kỹ thuật phần mềm',
-    'Khoa học dữ liệu',
-    'Hệ thống thông tin',
-    //   "Công nghệ ô tô",
-];
-const AddSubjectModal = ({ visible, onClose }) => {
-    const [chuanDauRa, setChuanDauRa] = useState('');
-    const [noiDungGD, setNoiDungGD] = useState('');
-    const [noiDungHD, setNoiDungHD] = useState('');
-    const [phuongPhap, setPhuongPhap] = useState('');
+import { API_ROUTES, axiosInstance } from '../cons';
 
+const AddSubjectModal = ({ visible, onClose }) => {
     const tlht = [
         {
             type: 'text',
@@ -269,15 +257,29 @@ const AddSubjectModal = ({ visible, onClose }) => {
     const rowCDR = [
         {
             id: 0,
-            value: '',
+            value: {
+                clo: 1,
+                content: '',
+                soPerPi: '',
+            },
             className: '',
         },
     ];
     const [tableRowCDR, setTableRowCDR] = useState(rowCDR);
     const addTableRowCDR = () => {
         setTableRowCDR((r) => {
-            const lastId = r[r.length - 1].id;
-            return [...r, { id: 1, value: '', className: '' }];
+            return [
+                ...r,
+                {
+                    id: r.length,
+                    value: {
+                        clo: r.length + 1,
+                        content: '',
+                        soPerPi: '',
+                    },
+                    className: '',
+                },
+            ];
         });
     };
     const deleteTableRowsCDR = (index) => {
@@ -285,18 +287,46 @@ const AddSubjectModal = ({ visible, onClose }) => {
         rows.splice(index, 1);
         setTableRowCDR(rows);
     };
+
+    const handleTableRowsCDR = (index, key, value) => {
+        setTableRowCDR((prev) => {
+            prev[index].value[key] = value;
+            return prev;
+        });
+    };
+
     const rowKHGD = [
         {
             id: 0,
-            value: '',
+            value: {
+                order: 1,
+                content: '',
+                nLessons: 0,
+                clos: '',
+                method: '',
+                bonus: '',
+            },
             className: '',
         },
     ];
     const [tableRowKHGD, setTableRowKHGD] = useState(rowKHGD);
     const addTableRowKHGD = () => {
         setTableRowKHGD((r) => {
-            const lastId = r[r.length - 1].id;
-            return [...r, { id: 1, value: '', className: '' }];
+            return [
+                ...r,
+                {
+                    id: r.length,
+                    value: {
+                        order: r.length + 1,
+                        content: '',
+                        nLessons: 0,
+                        clos: '',
+                        method: '',
+                        bonus: '',
+                    },
+                    className: '',
+                },
+            ];
         });
     };
     const deleteTableRowsKHGD = (index) => {
@@ -304,38 +334,90 @@ const AddSubjectModal = ({ visible, onClose }) => {
         rows.splice(index, 1);
         setTableRowKHGD(rows);
     };
+
+    const handleTableRowsKHGD = (index, key, value) => {
+        setTableRowKHGD((prev) => {
+            prev[index].value[key] = value;
+            return prev;
+        });
+    };
+
     const rowPPDG = [
         {
             id: 0,
-            value: '',
+            value: {
+                order: 1,
+                clo: 0,
+                test: '',
+                method: '',
+                proportion: 0,
+                target: 0,
+            },
             className: '',
         },
     ];
     const [tableRowPPDG, setTableRowPPDG] = useState(rowPPDG);
     const addTableRowPPDG = () => {
         setTableRowPPDG((r) => {
-            const lastId = r[r.length - 1].id;
-            return [...r, { id: 1, value: '', className: '' }];
+            return [
+                ...r,
+                {
+                    id: r.length,
+                    value: {
+                        order: r.length + 1,
+                        clo: 0,
+                        test: '',
+                        method: '',
+                        proportion: 0,
+                        target: 0,
+                    },
+                    className: '',
+                },
+            ];
         });
     };
+
     const deleteTableRowsPPDG = (index) => {
         const rows = [...tableRowPPDG];
         rows.splice(index, 1);
         setTableRowPPDG(rows);
     };
 
+    const handleTableRowsPPDG = (index, key, value) => {
+        setTableRowPPDG((prev) => {
+            prev[index].value[key] = value;
+            return prev;
+        });
+    };
+
     const rowTPDG = [
         {
             id: 0,
-            value: '',
+            value: {
+                order: 1,
+                name: '',
+                method: '',
+                proportion: 0,
+            },
             className: '',
         },
     ];
     const [tableRowTPDG, setTableRowTPDG] = useState(rowTPDG);
     const addTableRowTPDG = () => {
         setTableRowTPDG((r) => {
-            const lastId = r[r.length - 1].id;
-            return [...r, { id: 1, value: '', className: '' }];
+            return [
+                ...r,
+                {
+                    id: r.length,
+                    value: {
+                        order: r.length + 1,
+                        name: '',
+                        method: '',
+                        proportion: 0,
+                    },
+                    className: '',
+                },
+            ];
         });
     };
     const deleteTableRowsTPDG = (index) => {
@@ -343,6 +425,57 @@ const AddSubjectModal = ({ visible, onClose }) => {
         rows.splice(index, 1);
         setTableRowTPDG(rows);
     };
+
+    const handleTableRowsTPDG = (index, key, value) => {
+        setTableRowTPDG((prev) => {
+            prev[index].value[key] = value;
+            return prev;
+        });
+    };
+
+    const [subjectName, setSubjectName] = useState('');
+    const [theory, setTheory] = useState(0);
+    const [practice, setPractice] = useState(0);
+    const [selfLearning, setSelfLearning] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [abstract, setAbstract] = useState('');
+    const [other, setOther] = useState('');
+
+    useEffect(() => {
+        setTotal(Number(practice) + Number(selfLearning) + Number(theory));
+    }, [practice, selfLearning, theory]);
+
+    const saveSubject = () => {
+        let subjectObj = {
+            name: subjectName,
+            theoryCredits: Number(theory),
+            practiceCredits: Number(practice),
+            selfLearningCredits: Number(selfLearning),
+            totalCredits: total,
+            teachers: arrGVPT.map((gv) => gv.value).join('\n'),
+            documents: arrTLHT.map((tl) => tl.value).join('\n'),
+            goals: arrMTHP.map((mt) => mt.value).join('\n'),
+            abstract: abstract,
+            a: arrHPHT.map((ht) => ht.value).join('; '),
+            b: arrHPTQ.map((tq) => tq.value).join('; '),
+            c: arrHPSH.map((sh) => sh.value).join('; '),
+            other: other,
+            subjectContents: tableRowKHGD.map((khgd) => khgd.value),
+            subjectOutputStandards: tableRowCDR.map((cdr) => cdr.value),
+            evalElements: tableRowTPDG.map((tpdg) => tpdg.value),
+            evaluates: tableRowPPDG.map((ppdg) => ppdg.value),
+        };
+
+        axiosInstance
+            .post(API_ROUTES.createSubject, subjectObj, {
+                headers: {
+                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
+                },
+            })
+            .then((data) => console.alert(data.data))
+            .then((err) => console.log(err));
+    };
+
     if (!visible) return null;
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
@@ -372,17 +505,6 @@ const AddSubjectModal = ({ visible, onClose }) => {
                 </div>
                 <div className="flex flex-col w-full h-full p-6 pt-10 space-y-4">
                     <h2 className="text-xl font-bold">Thông tin môn học</h2>
-                    <div className="flex flex-row justify-center w-full space-x-16 items-left">
-                        <div className="flex flex-col w-64 ">
-                            <label>Tên học phần</label>
-                        </div>
-                        <div className="flex w-full ">
-                            <input
-                                type="text"
-                                className="w-[354.4px] border-b-2 focus:outline-none"
-                            />
-                        </div>
-                    </div>
                     <div className="flex flex-row justify-center w-full space-x-16 items-left ">
                         <div className="flex flex-col w-64 ">
                             <label>Mã học phần</label>
@@ -391,6 +513,20 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             <input
                                 type="text"
                                 className="w-[354.4px] border-b-2 focus:outline-none"
+                                disabled
+                            />
+                        </div>
+                    </div>
+                    <div className="flex flex-row justify-center w-full space-x-16 items-left">
+                        <div className="flex flex-col w-64 ">
+                            <label>Tên học phần</label>
+                        </div>
+                        <div className="flex w-full ">
+                            <input
+                                type="text"
+                                className="w-[354.4px] border-b-2 focus:outline-none"
+                                value={subjectName}
+                                onChange={(e) => setSubjectName(e.target.value)}
                             />
                         </div>
                     </div>
@@ -403,6 +539,9 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                 type="number"
                                 className="w-10 border-b-2 focus:outline-none"
                                 min={0}
+                                defaultValue={0}
+                                value={theory}
+                                onChange={(e) => setTheory(e.target.value)}
                             />
                         </div>
                     </div>
@@ -415,6 +554,9 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                 type="number"
                                 className="w-10 border-b-2 focus:outline-none"
                                 min={0}
+                                defaultValue={0}
+                                value={practice}
+                                onChange={(e) => setPractice(e.target.value)}
                             />
                         </div>
                     </div>
@@ -427,6 +569,11 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                 type="number"
                                 className="w-10 border-b-2 focus:outline-none"
                                 min={0}
+                                defaultValue={0}
+                                value={selfLearning}
+                                onChange={(e) =>
+                                    setSelfLearning(e.target.value)
+                                }
                             />
                         </div>
                     </div>
@@ -438,6 +585,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             <input
                                 type="text"
                                 className="w-10 border-b-2 focus:outline-none"
+                                defaultValue={0}
+                                value={total}
                                 disabled
                             />
                         </div>
@@ -583,6 +732,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             <textarea
                                 type="text"
                                 className="w-full border-2 rounded-md"
+                                value={abstract}
+                                onChange={(e) => setAbstract(e.target.value)}
                             />
                         </div>
                     </div>
@@ -726,6 +877,8 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             <textarea
                                 type="text"
                                 className="w-full border-2 rounded-md"
+                                value={other}
+                                onChange={(e) => setOther(e.target.value)}
                             />
                         </div>
                     </div>
@@ -762,6 +915,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                         {tableRowCDR.map((item, i) => {
                                             return (
                                                 <tr
+                                                    key={i}
                                                     id={i}
                                                     className={item.className}
                                                 >
@@ -769,21 +923,34 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         scope="row"
                                                         className="w-10 font-medium text-center border border-gray-400 "
                                                     >
-                                                        {i + 1}
+                                                        {item.value['clo']}
                                                     </td>
                                                     <td className=" border pt-2 relative w-[800px] border-gray-400  ">
-                                                        {/* <ReactQuill
-                              theme="snow"
-                              // value={value}
-                              onChange={setChuanDauRa}
-                            /> */}
-                                                        <textarea className="w-full break-all"></textarea>
+                                                        <textarea
+                                                            className="w-full break-all"
+                                                            onChange={(e) =>
+                                                                handleTableRowsCDR(
+                                                                    i,
+                                                                    'content',
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                        ></textarea>
                                                     </td>
 
                                                     <td className="w-40 pt-2 border border-gray-400 ">
                                                         <textarea
                                                             rows="auto"
                                                             cols="auto"
+                                                            onChange={(e) =>
+                                                                handleTableRowsCDR(
+                                                                    i,
+                                                                    'soPerPi',
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
                                                         />
                                                     </td>
 
@@ -881,14 +1048,17 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         scope="row"
                                                         className="w-10 font-medium border border-gray-400"
                                                     >
-                                                        {i + 1}
+                                                        {item.value['order']}
                                                     </th>
                                                     <td className="relative break-all border border-gray-400 w-96">
                                                         <ReactQuill
                                                             theme="snow"
-                                                            // value={value}
-                                                            onChange={
-                                                                setNoiDungGD
+                                                            onChange={(e) =>
+                                                                handleTableRowsKHGD(
+                                                                    i,
+                                                                    'content',
+                                                                    e
+                                                                )
                                                             }
                                                         />
                                                     </td>
@@ -896,27 +1066,55 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         <input
                                                             type="number"
                                                             min={0}
+                                                            defaultValue={0}
                                                             className="w-10 text-center border-b-2 focus:outline-none"
+                                                            onChange={(e) =>
+                                                                handleTableRowsKHGD(
+                                                                    i,
+                                                                    'nLessons',
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
                                                         />
                                                     </td>
                                                     <td className="relative w-24 p-2 break-all border border-gray-400">
                                                         <input
                                                             type="text"
                                                             className="w-full border-b-2 focus:outline-none"
+                                                            onChange={(e) =>
+                                                                handleTableRowsKHGD(
+                                                                    i,
+                                                                    'clos',
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
                                                         />
                                                     </td>
                                                     <td className="relative w-40 p-2 break-all border border-gray-400">
                                                         <input
                                                             type="text"
                                                             className="w-full border-b-2 focus:outline-none"
+                                                            onChange={(e) =>
+                                                                handleTableRowsKHGD(
+                                                                    i,
+                                                                    'method',
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
                                                         />
                                                     </td>
                                                     <td className="p-2 break-all border border-gray-400 w-72">
                                                         <ReactQuill
                                                             theme="snow"
-                                                            // value={value}
-                                                            onChange={
-                                                                setNoiDungGD
+                                                            onChange={(e) =>
+                                                                handleTableRowsKHGD(
+                                                                    i,
+                                                                    'bonus',
+                                                                    e
+                                                                )
                                                             }
                                                         />
                                                     </td>
@@ -1016,18 +1214,45 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             type="number"
                                                             className="w-full text-center border-b-2 focus:outline-none"
                                                             min={0}
+                                                            defaultValue={0}
+                                                            onChange={(e) =>
+                                                                handleTableRowsPPDG(
+                                                                    i,
+                                                                    'clo',
+                                                                    Number(
+                                                                        e.target
+                                                                            .value
+                                                                    )
+                                                                )
+                                                            }
                                                         />
                                                     </th>
                                                     <td className="relative p-2 break-all border border-gray-400 w-96">
                                                         <input
                                                             type="text"
                                                             className="w-full border-b-2 focus:outline-none"
+                                                            onChange={(e) =>
+                                                                handleTableRowsPPDG(
+                                                                    i,
+                                                                    'test',
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
                                                         />
                                                     </td>
                                                     <td className="relative break-all border border-gray-400 w-[500px] p-2">
                                                         <input
                                                             type="text"
                                                             className="w-full border-b-2 focus:outline-none"
+                                                            onChange={(e) =>
+                                                                handleTableRowsPPDG(
+                                                                    i,
+                                                                    'method',
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
                                                         />
                                                     </td>
                                                     <td className="relative w-32 p-2 break-all border border-gray-400">
@@ -1035,6 +1260,17 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             type="number"
                                                             className="w-full border-b-2 focus:outline-none"
                                                             min={0}
+                                                            defaultValue={0}
+                                                            onChange={(e) =>
+                                                                handleTableRowsPPDG(
+                                                                    i,
+                                                                    'proportion',
+                                                                    Number(
+                                                                        e.target
+                                                                            .value
+                                                                    )
+                                                                )
+                                                            }
                                                         />
                                                     </td>
                                                     <td className="relative w-32 p-2 break-all border border-gray-400">
@@ -1042,6 +1278,17 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             type="number"
                                                             className="w-full border-b-2 focus:outline-none"
                                                             min={0}
+                                                            defaultValue={0}
+                                                            onChange={(e) =>
+                                                                handleTableRowsPPDG(
+                                                                    i,
+                                                                    'target',
+                                                                    Number(
+                                                                        e.target
+                                                                            .value
+                                                                    )
+                                                                )
+                                                            }
                                                         />
                                                     </td>
                                                     <td className="w-10 pl-4">
@@ -1122,14 +1369,25 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         <textarea
                                                             type="text"
                                                             className="w-full"
+                                                            onChange={(e) =>
+                                                                handleTableRowsTPDG(
+                                                                    i,
+                                                                    'name',
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
                                                         ></textarea>
                                                     </th>
                                                     <td className="relative break-all border border-gray-400 w-[510px] p-2">
                                                         <ReactQuill
                                                             theme="snow"
-                                                            // value={value}
-                                                            onChange={
-                                                                setPhuongPhap
+                                                            onChange={(e) =>
+                                                                handleTableRowsTPDG(
+                                                                    i,
+                                                                    'method',
+                                                                    e
+                                                                )
                                                             }
                                                         />
                                                     </td>
@@ -1138,6 +1396,16 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             type="number"
                                                             className="w-full border-b-2 focus:outline-none "
                                                             min={0}
+                                                            onChange={(e) =>
+                                                                handleTableRowsTPDG(
+                                                                    i,
+                                                                    'proportion',
+                                                                    Number(
+                                                                        e.target
+                                                                            .value
+                                                                    )
+                                                                )
+                                                            }
                                                         />
                                                     </td>
 
@@ -1180,7 +1448,10 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         <h3>c.Thang điểm đánh giá: Theo học chế tín chỉ</h3>
                     </div>
                     <div className="flex items-center justify-end space-x-6 pb-8">
-                        <button className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold hover:bg-green-300 hover:text-gray-800">
+                        <button
+                            className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold hover:bg-green-300 hover:text-gray-800"
+                            onClick={saveSubject}
+                        >
                             Lưu
                         </button>
                         {/* <button className="w-[90px] text-gray-50 h-12 bg-blue-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
