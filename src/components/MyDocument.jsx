@@ -296,6 +296,9 @@ const MyDocument = () => {
                       <th scope="col " className="pl-2 border border-gray-400">
                         Tỉ trọng
                       </th>
+                      <th scope="col " className="pl-2 border border-gray-400">
+                        Chỉ tiêu
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="text-sm border border-gray-400 ">
@@ -309,29 +312,9 @@ const MyDocument = () => {
                       <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
                       <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
                       <td className="relative w-32 pl-2 break-all border border-gray-400"></td>
-                    </tr>
-                    <tr className="border border-gray-400 ">
-                      <th
-                        scope="row"
-                        className="font-medium border border-gray-400 "
-                      >
-                        2
-                      </th>
-                      <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
-                      <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
                       <td className="relative w-32 pl-2 break-all border border-gray-400"></td>
                     </tr>
-                    <tr className="border border-gray-400 ">
-                      <th
-                        scope="row"
-                        className="font-medium border border-gray-400 "
-                      >
-                        3
-                      </th>
-                      <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
-                      <td className="relative pl-2 break-all border border-gray-400 w-96"></td>
-                      <td className="relative w-32 pl-2 break-all border border-gray-400"></td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </Text>
