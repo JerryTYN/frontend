@@ -65,6 +65,7 @@ const SubjectManager = () => {
             })
             .then((data) => {
                 alert(data.data);
+                setSubject(undefined)
                 axiosInstance
                     .get(API_ROUTES.getSubjects, {
                         headers: {
