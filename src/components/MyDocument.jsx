@@ -1,11 +1,26 @@
 import React from "react";
-import { Page, Text, View, Document } from "@react-pdf/renderer";
+import { Page, Text, View, Document,StyleSheet  } from "@react-pdf/renderer";
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'row',
+    backgroundColor: "rgb(255,255,255)",
+    paddingTop:20,
+    paddingBottom: 20
+    // marginBottom: "50px",
+  // transform: "translateY(-50px)"
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    // flexGrow: 1
+  }
+});
 const MyDocument = ({ data }) => {
   console.log(data);
   return (
     <Document>
-      <Page size="A4" className="bg-stone-50" id="report">
-        <View className="flex p-10 m-10">
+      <Page size="A4"style={styles.page} id="report">
+        <View className="flex p-10 m-10"style={styles.section}>
           <div className="flex flex-col w-full space-y-4">
             <Text className="font-medium text-md text-gray-950">
               1 Tên và mã học phần: {data && `${data.name} - ${data.id}`}
@@ -68,15 +83,15 @@ const MyDocument = ({ data }) => {
               <Text>Học phần song hành: {data && data.c}</Text>
             </div>
             <Text className="text-sm italic text-gray-600">d Yêu cầu khác</Text>
-            <div className="flex flex-col text-sm text-gray-500">
+            <div className="flex flex-col text-sm text-gray-500 ">
               <Text>{data && data.other}</Text>
             </div>
-            <Text className="font-medium text-md text-gray-950">
+            <Text className="font-medium text-md text-gray-950 " >
               6 Chuẩn đầu ra của học phần
             </Text>
             {/* <div className="flex flex-col text-sm text-gray-500"> */}
             <Text>Khi hoàn thành học phần, người học có khả năng:</Text>
-            <Text className="relative">
+            <Text className="relative" >
             <table className="items-center w-full text-sm border border-gray-400">
               <thead className="border border-gray-400 ">
                 <tr className="h-14">
@@ -99,7 +114,7 @@ const MyDocument = ({ data }) => {
                 {data ? (
                   data.subjectOutputStandards.map((so) => {
                     return (
-                      <tr key={so.id} className="border border-gray-400">
+                      <tr key={so.id} className="border border-gray-400 h-14">
                         <th
                           scope="row"
                           className="w-10 font-medium border border-gray-400 "
@@ -117,7 +132,7 @@ const MyDocument = ({ data }) => {
                     );
                   })
                 ) : (
-                  <tr className="border border-gray-400">
+                  <tr className="border border-gray-400 h-14">
                     <th
                       scope="row"
                       className="w-10 font-medium border border-gray-400 "
@@ -140,7 +155,7 @@ const MyDocument = ({ data }) => {
             <Text className="relative">
               <table className="w-full text-sm border border-gray-400">
                 <thead className="border border-gray-400">
-                  <tr>
+                  <tr className="h-14">
                     <th scope="col" className="px-1 border border-gray-400 ">
                       CLOs
                     </th>
@@ -169,7 +184,7 @@ const MyDocument = ({ data }) => {
                   </tr>
                 </thead>
                 <tbody className="text-sm border border-gray-400">
-                  <tr className="border border-gray-400">
+                  <tr className="border border-gray-400 h-14">
                     <th
                       scope="row"
                       className="w-10 font-medium border border-gray-400"
@@ -199,7 +214,7 @@ const MyDocument = ({ data }) => {
               <Text className="relative">
                 <table className="w-full text-sm border border-gray-400">
                   <thead className="border border-gray-400">
-                    <tr>
+                    <tr className="h-14">
                       <th scope="col" className="px-1 border border-gray-400 ">
                         STT
                       </th>
@@ -224,7 +239,7 @@ const MyDocument = ({ data }) => {
                   <tbody className="text-sm border border-gray-400 ">
                     {data ? (
                       data.subjectContents.map((sc) => (
-                        <tr key={sc.id} className="border border-gray-400 ">
+                        <tr key={sc.id} className="border border-gray-400 h-14">
                           <th
                             scope="row"
                             className="w-10 font-medium border border-gray-400"
@@ -249,7 +264,7 @@ const MyDocument = ({ data }) => {
                         </tr>
                       ))
                     ) : (
-                      <tr className="border border-gray-400 ">
+                      <tr className="border border-gray-400 h-14">
                         <th
                           scope="row"
                           className="w-10 font-medium border border-gray-400"
@@ -285,7 +300,7 @@ const MyDocument = ({ data }) => {
               <Text className="relative">
                 <table className="w-full text-sm border border-gray-400">
                   <thead className="border border-gray-400">
-                    <tr>
+                    <tr className="h-14">
                       <th scope="col" className="px-1 border border-gray-400 ">
                         CLOs
                       </th>
@@ -307,7 +322,7 @@ const MyDocument = ({ data }) => {
                   <tbody className="text-sm border border-gray-400 ">
                     {data ? (
                       data.evaluates.map((e) => (
-                        <tr key={e.id} className="border border-gray-400 ">
+                        <tr key={e.id} className="border border-gray-400 h-14">
                           <th
                             scope="row"
                             className="w-10 font-medium border border-gray-400"
@@ -329,7 +344,7 @@ const MyDocument = ({ data }) => {
                         </tr>
                       ))
                     ) : (
-                      <tr className="border border-gray-400 ">
+                      <tr className="border border-gray-400 h-14">
                         <th
                           scope="row"
                           className="w-10 font-medium border border-gray-400"
@@ -353,7 +368,7 @@ const MyDocument = ({ data }) => {
               <Text className="relative">
                 <table className="w-full text-sm border border-gray-400">
                   <thead className="border border-gray-400">
-                    <tr>
+                    <tr className="h-14">
                       <th scope="col" className="px-1 border border-gray-400 ">
                         Phương pháp
                       </th>
@@ -370,7 +385,7 @@ const MyDocument = ({ data }) => {
                   <tbody className="text-sm border border-gray-400 ">
                     {data ? (
                       data.evalElements.map((ee) => (
-                        <tr key={ee.id} className="border border-gray-400 ">
+                        <tr key={ee.id} className="border border-gray-400 h-14">
                           <th
                             scope="row"
                             className="font-medium border border-gray-400 "
@@ -386,7 +401,7 @@ const MyDocument = ({ data }) => {
                         </tr>
                       ))
                     ) : (
-                      <tr className="border border-gray-400 ">
+                      <tr className="border border-gray-400 h-14">
                         <th
                           scope="row"
                           className="font-medium border border-gray-400 "

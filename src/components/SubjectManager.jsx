@@ -9,8 +9,9 @@ import CloneSubjectModal from "./CloneSubjectModal";
 import { PDFDownloadLink, usePDF, pdf } from "@react-pdf/renderer";
 import JsPDF from "jspdf";
 import ReactDOMServer from "react-dom/server";
-import html2canvas from 'html2canvas';
-import html2pdf from 'html2pdf.js';
+import html2canvas from "html2canvas";
+import html2pdf from "html2pdf.js";
+import "jspdf-autotable";
 const SubjectManager = () => {
   const [addSubjectModal, setAddSubjectModal] = useState(false);
 
@@ -50,22 +51,150 @@ const SubjectManager = () => {
       .then((data) => setSubject(data.data.result))
       .catch((err) => console.log(err));
   };
-  
-
-  const handleExportPDF = () => {
-    const input = document.getElementById('report');
-    html2canvas(input, { scrollY: -window.scrollY }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new JsPDF();
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save('file.pdf');
+// dep
+  const handleExportPDF = async () => {
+    const input = document.getElementById("report");
+    const canvas = await html2canvas(input, { scrollY: -window.scrollY });
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new JsPDF({
+      unit: "px",
+      format: "a4",
+      orientation: "portrait",
+      compress: true,
     });
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    // const pdfHeight = ((imgProps.height + 50) * pdfWidth) / imgProps.width;
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    // console.log(imgProps.height, pdfHeight);
+    for (
+      let i = 1;
+      i < canvas.height / pdf.internal.pageSize.getHeight() / 2;
+      i++
+    ) {
+      pdf.addPage();
+      pdf.addImage(
+        imgData,
+        "PNG",
+        0,
+        -pdf.internal.pageSize.getHeight() * i,
+        // -pdf.internal.pageSize.getHeight() * i + 50,
+        pdfWidth,
+        pdfHeight
+      );
+    //   pdf.setFillColor(255, 255, 255);
+    //   pdf.rect(
+    //     0,
+    //     pdf.internal.pageSize.getHeight() - 50,
+    //     pdf.internal.pageSize.getWidth(),
+    //     50,
+    //     "F"
+    //   );
+    }
+    pdf.save("file.pdf");
   };
-  
 
+  // tach dc trang
+  //   const handleExportPDF = async () => {
+  //     const input = document.getElementById("report");
+  //     const canvas = await html2canvas(input, {
+  //       scrollY: -window.scrollY,
+  //       scale: 1,
+  //     });
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new JsPDF();
+  //     const imgProps = pdf.getImageProperties(imgData);
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width - 40;
+  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+  //     for (
+  //       let i = 1;
+  //       i < canvas.height / pdf.internal.pageSize.getHeight();
+  //       i++
+  //     ) {
+  //       pdf.addPage();
+  //       pdf.addImage(
+  //         imgData,
+  //         "PNG",
+  //         0,
+  //         -pdf.internal.pageSize.getHeight() * i,
+  //         pdfWidth,
+  //         pdfHeight
+  //       );
+  //     }
+  //     pdf.save("file.pdf");
+  //   };
+
+  // const handleExportPDF = async () => {
+  //     const input = document.getElementById("report");
+  //     const canvas = await html2canvas(input, { scrollY: -window.scrollY });
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdfWidth = canvas.width;
+  //     const pdfHeight = canvas.height;
+  //     const pdf = new JsPDF({ orientation: 'portrait', unit: 'px', format: [pdfWidth, pdfHeight] });
+
+  //     let position = 0;
+  //     while (position < canvas.height) {
+  //     const imgProps = pdf.getImageProperties(imgData);
+  //     pdf.addImage(
+  //     imgData,
+  //     "PNG",
+  //     0,
+  //     position,
+  //     imgProps.width,
+  //     imgProps.height
+  //     );
+  //     position += imgProps.height;
+  //     if (position < canvas.height) {
+  //     pdf.addPage();
+  //     }
+  //     }
+  //     pdf.save("file.pdf");
+  //     };
+  // OK
+
+  // const handleExportPDF = async () => {
+  //     const input = document.getElementById("report");
+  //     const canvas = await html2canvas(input, { scrollY: -window.scrollY });
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdfWidth = canvas.width;
+  //     const pdfHeight = canvas.height;
+  //     const pdf = new JsPDF({ orientation: 'portrait', unit: 'px', format: [pdfWidth, pdfHeight] });
+
+  //     let position = 0;
+  //     let page = 1;
+  //     const maxPageHeight = pdf.internal.pageSize.height;
+
+  //     while (position < canvas.height) {
+  //       const imgProps = pdf.getImageProperties(imgData);
+  //       const remainingPageHeight = maxPageHeight - position % maxPageHeight;
+  //       const imgHeightOnPage = Math.min(imgProps.height, remainingPageHeight);
+  //       pdf.addImage(
+  //         imgData,
+  //         "PNG",
+  //         0,
+  //         position,
+  //         imgProps.width,
+  //         imgHeightOnPage
+  //       );
+  //       position += imgHeightOnPage;
+  //       if (position % maxPageHeight === 0) {
+  //         pdf.addPage();
+  //         page++;
+  //       }
+  //     }
+
+  //     pdf.save("file.pdf");
+  //   };
+  //
+  
+  
+  
+  
+  
+  
+  
   
   return (
     <div className="flex h-[580px] bg-white rounded-md shadow-lg overflow-hidden">
