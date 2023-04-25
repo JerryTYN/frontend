@@ -185,10 +185,12 @@ const SubjectManager = () => {
             <UpdateSubjectModal
                 visible={updateSubjectModal}
                 onClose={handleCloseModal}
+                subject={subject}
             />
             <CloneSubjectModal
                 visible={cloneSubjectModal}
                 onClose={handleCloseModal}
+                subject={subject}
             />
         </div>
     );
