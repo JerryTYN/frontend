@@ -447,6 +447,7 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
 
   useEffect(() => {
     if (subject) {
+      
       setSubjectName(subject.name);
       setTheory(subject.theoryCredits);
       setPractice(subject.practiceCredits);
@@ -536,6 +537,7 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
               <input
                 type="text"
                 className="w-[354.4px] border-b-2 focus:outline-none"
+                
                 disabled
               />
             </div>
