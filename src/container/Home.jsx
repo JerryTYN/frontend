@@ -9,6 +9,7 @@ import SubjectManager from "../components/SubjectManager";
 import TeacherManager from "../components/TeacherManager";
 import UserProfile from "../components/UserProfile";
 import { API_ROUTES, axiosInstance } from "../cons";
+import SubjectManagerTeacherRole from "../components/SubjectManagerTeacherRole";
 const isNotActiveStyle = 'flex items-center  gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
 const isActiveStyle = 'flex items-center  gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize';
 const Home = () => {
@@ -231,6 +232,7 @@ const Home = () => {
             <Route path="Home/SubjectManager" element={<SubjectManager />} />
             <Route path="Home/TeacherManager" element={<TeacherManager />} />
             <Route path="Home/User" element={<UserProfile />} />
+            <Route path="Home/SubjectManager_Teacher_role" element={<SubjectManagerTeacherRole />} />
           </Routes>
         </div>
       </div>

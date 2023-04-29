@@ -4,6 +4,7 @@ import MyDocument from "./MyDocument";
 import AddSubjectModal from "./AddSubjectModal";
 import { API_ROUTES, axiosInstance } from "../cons";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import { GoRequestChanges } from "react-icons/go";
 import UpdateSubjectModal from "./UpdateSubjectModal";
 import CloneSubjectModal from "./CloneSubjectModal";
 import { PDFDownloadLink, usePDF, pdf } from "@react-pdf/renderer";
@@ -12,6 +13,7 @@ import ReactDOMServer from "react-dom/server";
 import html2canvas from "html2canvas";
 import html2pdf from "html2pdf.js";
 import "jspdf-autotable";
+import RequestToTeacher from "./RequestToTeacher";
 const SubjectManager = () => {
   const [addSubjectModal, setAddSubjectModal] = useState(false);
 
@@ -36,6 +38,7 @@ const SubjectManager = () => {
     setAddSubjectModal(false);
     setUpdateSubjectModal(false);
     setCloneSubjectModal(false);
+    setRequestTeacherModal(false);
   };
   const [selectedSubject, setSelectedSubject] = useState(null);
 
@@ -51,7 +54,7 @@ const SubjectManager = () => {
       .then((data) => setSubject(data.data.result))
       .catch((err) => console.log(err));
   };
-// dep
+  // dep
   const handleExportPDF = async () => {
     const input = document.getElementById("report");
     const canvas = await html2canvas(input, { scrollY: -window.scrollY });
@@ -83,14 +86,14 @@ const SubjectManager = () => {
         pdfWidth,
         pdfHeight
       );
-    //   pdf.setFillColor(255, 255, 255);
-    //   pdf.rect(
-    //     0,
-    //     pdf.internal.pageSize.getHeight() - 50,
-    //     pdf.internal.pageSize.getWidth(),
-    //     50,
-    //     "F"
-    //   );
+      //   pdf.setFillColor(255, 255, 255);
+      //   pdf.rect(
+      //     0,
+      //     pdf.internal.pageSize.getHeight() - 50,
+      //     pdf.internal.pageSize.getWidth(),
+      //     50,
+      //     "F"
+      //   );
     }
     pdf.save("file.pdf");
   };
@@ -188,16 +191,11 @@ const SubjectManager = () => {
   //     pdf.save("file.pdf");
   //   };
   //
-  
-  
-  
-  
-  
-  
-  
-  
+
+  const [requestTeacherModal, setRequestTeacherModal] = useState(false);
+
   return (
-    <div className="flex h-[580px] bg-white rounded-md shadow-lg overflow-hidden">
+    <div className="flex h-[610px] bg-white rounded-md shadow-lg overflow-hidden">
       <div className="flex flex-col p-4 border-r-4 border-gray-900- ">
         <div className="sticky top-0 ">
           <h1 className="pt-2 text-xl font-bold text-center text-gray-950 z">
@@ -247,18 +245,25 @@ const SubjectManager = () => {
             </div>
           ))}
         </div>
+        <div className="sticky bottom-0 flex items-center justify-center w-full p-1 border-2 border-black rounded-lg hover:cursor-pointer">
+          <label className="p-2.5 hover:cursor-pointer">Tạo yêu cầu</label>
+          <button className="p-2.5 bg-black text-white rounded-lg " onClick={()=>setRequestTeacherModal(true)}>
+            <GoRequestChanges className="font-semibold" />
+          </button>
+        </div>
       </div>
       <div className="flex flex-col w-full">
         {/* <h1 className="font-bold text-gray-50 text-md">Subject_view</h1> */}
         <div className="flex-1 mx-auto">
-          <div className="flex w-[850px] bg-gray-50 rounded-xl h-[460px] overflow-y-auto justify-center scrollbar-hide border-1  border-gray-900 ">
+          <div className="flex w-[850px] bg-gray-50 rounded-xl h-[520px] overflow-y-auto justify-center scrollbar-hide border-1  border-gray-900 ">
             {/* <center> */}
             {/* <div> */}
+
             <MyDocument data={subject} />
             {/* </div> */}
             {/* </center> */}
           </div>
-          <div className="flex justify-end pt-4 pr-4 space-x-10 text-center">
+          <div className="flex justify-end pt-8 pr-4 space-x-10 text-center">
             <button
               onClick={() => setAddSubjectModal(true)}
               className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-green-500 "
@@ -306,6 +311,7 @@ const SubjectManager = () => {
         visible={cloneSubjectModal}
         onClose={handleCloseModal}
       />
+      <RequestToTeacher visible={requestTeacherModal} onClose={handleCloseModal}/>
     </div>
   );
 };
