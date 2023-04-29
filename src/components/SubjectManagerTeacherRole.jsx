@@ -23,7 +23,7 @@ const SubjectManagerTeacherRole = () => {
   const iconClassNames = classNames("text-gray-400", "text-xl", "mr-2");
   return (
     <div className="w-full h-[600px]  flex   p-2 space-y-8">
-      <div className="fixed flex items-center mr-2 right-4">
+      <div className="fixed flex items-center mr-2 right-4 hover:cursor-pointer">
         <div className="relative">
           <div title={hasBadge ? `Bạn có ${badgeNumber} yêu cầu từ Trưởng bộ môn` : ""}>
             <FontAwesomeIcon icon={icon} className={iconClassNames} />
