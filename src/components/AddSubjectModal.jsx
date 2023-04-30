@@ -1003,6 +1003,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                     </thead>
                                     <tbody className="text-sm ">
                                         {tableRowPPDG.map((item, i) => {
+                                            // console.log(item.id);
                                             return (
                                                 <tr
                                                     id={i}
@@ -1045,7 +1046,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         />
                                                     </td>
                                                     <td className="w-10 pl-4">
-                                                        {item.id === 0 ? (
+                                                        {i === 0 ? (
                                                             <button
                                                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                                 onClick={
@@ -1057,10 +1058,12 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         ) : (
                                                             <button
                                                                 className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
-                                                                onClick={() =>
+                                                                onClick={() =>{
+                                                                    console.log("delete id",item.id);
                                                                     deleteTableRowsPPDG(
-                                                                        i
+                                                                        item.id
                                                                     )
+                                                                }
                                                                 }
                                                             >
                                                                 -

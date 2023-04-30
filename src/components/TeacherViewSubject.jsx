@@ -11,7 +11,7 @@ const faculties = [
   "Hệ thống thông tin",
   //   "Công nghệ ô tô",
 ];
-const UpdateSubjectModal = ({ visible, onClose }) => {
+const TeacherViewSubject = ({ visible, onClose }) => {
   const [chuanDauRa, setChuanDauRa] = useState("");
   const [noiDungGD, setNoiDungGD] = useState("");
   const [noiDungHD, setNoiDungHD] = useState("");
@@ -460,6 +460,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputGVPT}
                       >
@@ -467,6 +468,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                       </button>
                     ) : (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputGVPT(i)}
                       >
@@ -502,6 +504,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputTLHT}
                       >
@@ -509,6 +512,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                       </button>
                     ) : (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputTLHT(i)}
                       >
@@ -545,6 +549,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputMTHP}
                       >
@@ -552,6 +557,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                       </button>
                     ) : (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputMTHP(i)}
                       >
@@ -595,6 +601,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputHPHT}
                       >
@@ -602,6 +609,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                       </button>
                     ) : (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputHPHT(i)}
                       >
@@ -637,6 +645,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputHPTQ}
                       >
@@ -644,6 +653,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                       </button>
                     ) : (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputHPTQ(i)}
                       >
@@ -679,6 +689,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                     />
                     {item.id === 0 ? (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                         onClick={addInputHPSH}
                       >
@@ -686,6 +697,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                       </button>
                     ) : (
                       <button
+                      disabled
                         className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                         onClick={() => handleDeleteInputHPSH(i)}
                       >
@@ -759,6 +771,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                           <td className="border border-gray-400 ">
                             {item.id === 0 ? (
                               <button
+                              disabled
                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                 onClick={addTableRowCDR}
                               >
@@ -766,6 +779,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                               </button>
                             ) : (
                               <button
+                              disabled
                                 className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                 onClick={() => deleteTableRowsCDR(i)}
                               >
@@ -861,6 +875,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                           <td className="border-none">
                             {item.id === 0 ? (
                               <button
+                              disabled
                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                 onClick={addTableRowKHGD}
                               >
@@ -868,6 +883,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                               </button>
                             ) : (
                               <button
+                              disabled
                                 className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                 onClick={() => deleteTableRowsKHGD(i)}
                               >
@@ -953,6 +969,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                           <td className="border border-gray-400 ">
                             {item.id === 0 ? (
                               <button
+                              disabled
                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                 onClick={addTableRowPPDG}
                               >
@@ -960,8 +977,9 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                               </button>
                             ) : (
                               <button
+                              disabled
                                 className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
-                                onClick={() => deleteTableRowsPPDG(item.id)}
+                                onClick={() => deleteTableRowsPPDG(i)}
                               >
                                 -
                               </button>
@@ -1031,6 +1049,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                           <td className="w-5 border-none">
                             {item.id === 0 ? (
                               <button
+                              disabled
                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                 onClick={addTableRowTPDG}
                               >
@@ -1038,6 +1057,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
                               </button>
                             ) : (
                               <button
+                              disabled
                                 className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                 onClick={() => deleteTableRowsTPDG(i)}
                               >
@@ -1061,7 +1081,7 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
             <h3>c.Thang điểm đánh giá: Học theo chế tín chỉ</h3>
           </div>
           <div className="flex items-center justify-end pb-8 space-x-6">
-            <button className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold hover:bg-green-300 hover:text-gray-800">
+            <button disabled className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold ">
               Lưu
             </button>
             {/* <button className="w-[90px] text-gray-50 h-12 bg-red-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
@@ -1074,4 +1094,4 @@ const UpdateSubjectModal = ({ visible, onClose }) => {
   );
 };
 
-export default UpdateSubjectModal;
+export default TeacherViewSubject;

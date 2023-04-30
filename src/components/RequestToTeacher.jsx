@@ -3,11 +3,11 @@ import "react-quill/dist/quill.snow.css";
 import React, { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 const options = [
-  { value: "1", label: "Nguyễn Văn A" },
-  { value: "2", label: "Nguyễn Văn B" },
-  { value: "3", label: "Nguyễn Văn E" },
-  { value: "4", label: "Nguyễn Văn F" },
-  { value: "5", label: "Nguyễn Văn G" },
+  { value: "1", label: "Nguyễn Văn A [email@gmail.com]" },
+  { value: "2", label: "Nguyễn Văn B [email@gmail.com]" },
+  { value: "3", label: "Nguyễn Văn E [email@gmail.com]" },
+  { value: "4", label: "Nguyễn Văn F [email@gmail.com]" },
+  { value: "5", label: "Nguyễn Văn G [email@gmail.com]" },
 ];
 const RequestToTeacher = ({ visible, onClose }) => {
   const [query, setQuery] = useState("");

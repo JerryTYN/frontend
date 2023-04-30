@@ -8,12 +8,15 @@ import {
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
+import TeacherViewSubject from "./TeacherViewSubject";
 
 const icons = [faCoffee, faBell, faEnvelope];
 const SubjectManagerTeacherRole = () => {
   const [teacherCreateSJModal, setTeacherCreateSJModal] = useState(false);
+  const [teacherViewSJModal, setTeacherViewSJModal] = useState(false);
   const handleCloseModal = () => {
     setTeacherCreateSJModal(false);
+    setTeacherViewSJModal(false);
   };
   const randomIndex = Math.floor(Math.random() * icons.length);
   const icon = icons[1];
@@ -25,7 +28,11 @@ const SubjectManagerTeacherRole = () => {
     <div className="w-full h-[600px]  flex   p-2 space-y-8">
       <div className="fixed flex items-center mr-2 right-4 hover:cursor-pointer">
         <div className="relative">
-          <div title={hasBadge ? `Bạn có ${badgeNumber} yêu cầu từ Trưởng bộ môn` : ""}>
+          <div
+            title={
+              hasBadge ? `Bạn có ${badgeNumber} yêu cầu từ Trưởng bộ môn` : ""
+            }
+          >
             <FontAwesomeIcon icon={icon} className={iconClassNames} />
             {hasBadge && (
               <div className="absolute flex items-center justify-center w-4 h-4 text-xs text-white transform bg-red-500 rounded-full -translate-y-1/6 -translate-x-1/4 -top-1 -right-1">
@@ -53,7 +60,10 @@ const SubjectManagerTeacherRole = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="flex">
+                <tr
+                  className="flex hover:bg-gray-100 hover:cursor-pointer"
+                  onClick={() => setTeacherViewSJModal(true)}
+                >
                   <td className="w-32 border border-gray-700">Mã môn học</td>
                   <td className="border border-gray-700 w-72">Tên môn học</td>
                   <td className="flex-1 border border-gray-700">
@@ -90,6 +100,10 @@ const SubjectManagerTeacherRole = () => {
         </div>
         <TeacherCreateSubject
           visible={teacherCreateSJModal}
+          onClose={handleCloseModal}
+        />
+        <TeacherViewSubject
+          visible={teacherViewSJModal}
           onClose={handleCloseModal}
         />
       </div>
