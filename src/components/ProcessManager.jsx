@@ -1,22 +1,78 @@
-import React, { useState } from "react";
-import { AiFillEdit, AiFillDelet, AiFillPrintere, AiFillPrinter, AiFillDelete } from 'react-icons/ai';
-import { MdOutlineLockReset } from 'react-icons/md'
+import React, { useEffect, useState } from 'react';
+import {
+    AiFillEdit,
+    AiFillDelet,
+    AiFillPrintere,
+    AiFillPrinter,
+    AiFillDelete,
+} from 'react-icons/ai';
+import { MdOutlineLockReset } from 'react-icons/md';
 
-import AddProcess from "./AddProcess";
-import EditProcess from "./EditProcess";
-import PrintProcess from "./PrintProcess";
+import AddProcess from './AddProcess';
+import EditProcess from './EditProcess';
+import PrintProcess from './PrintProcess';
+import { API_ROUTES, axiosInstance } from '../cons';
 const ProcessManager = () => {
-    const [editProcessModal, setEditProcessModal] = useState(false)
-  const [addProcessModal, setAddProcessModal] = useState(false)
-  const [printProcessModal, setPrintProcessModal]  = useState(false)
-  const handleCloseModal = () => {
-    setAddProcessModal(false)
-    setPrintProcessModal(false)
-    setEditProcessModal(false)
-};
+    const [editProcessModal, setEditProcessModal] = useState(false);
+    const [addProcessModal, setAddProcessModal] = useState(false);
+    const [printProcessModal, setPrintProcessModal] = useState(false);
+    const handleCloseModal = () => {
+        setAddProcessModal(false);
+        setPrintProcessModal(false);
+        setEditProcessModal(false);
 
-  return (
-    <div className="relative h-full shadow-md rounded-lg p-2.5">
+        axiosInstance
+            .get(API_ROUTES.getProcesses, {
+                headers: {
+                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
+                },
+            })
+            .then((data) => setProcesses(data.data));
+    };
+
+    const [processes, setProcesses] = useState([]);
+    const [process, setProcess] = useState([]);
+
+    useEffect(() => {
+        axiosInstance
+            .get(API_ROUTES.getProcesses, {
+                headers: {
+                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
+                },
+            })
+            .then((data) => setProcesses(data.data));
+    }, []);
+
+    const handleDelete = (id) => {
+        axiosInstance
+            .delete(API_ROUTES.deleteProcess + `?id=${id}`, {
+                headers: {
+                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
+                },
+            })
+            .then((data) => {
+                alert(data.data);
+                axiosInstance
+                    .get(API_ROUTES.getProcesses, {
+                        headers: {
+                            Authorization:
+                                'bearer ' + sessionStorage.getItem('token'),
+                        },
+                    })
+                    .then((data) => setProcesses(data.data));
+            });
+
+        axiosInstance
+            .get(API_ROUTES.getProcesses, {
+                headers: {
+                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
+                },
+            })
+            .then((data) => setProcesses(data.data));
+    };
+
+    return (
+        <div className="relative h-full shadow-md rounded-lg p-2.5">
             <div className="flex items-center justify-between py-4   p-2.5">
                 <label for="table-search" className="sr-only">
                     Search
@@ -68,85 +124,80 @@ const ProcessManager = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {users
-                            .filter((u) =>
-                                u.fullName
-                                    .toLowerCase()
-                                    .includes(searchUser.toLowerCase())
-                            )
-                            .map((u, index) => ( */}
-                                <tr
-                                    // key={index}
-                                    className="flex items-center justify-between w-full bg-white border-b hover:bg-gray-50"
+                        {processes.map((item, idx) => (
+                            <tr
+                                // key={index}
+                                className="flex items-center justify-between w-full bg-white border-b hover:bg-gray-50"
+                            >
+                                <th
+                                    scope="row"
+                                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
                                 >
-                                    <th
-                                        scope="row"
-                                        className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-                                    >
-                                        Tên chương trình
-                                    </th>
-                             
+                                    {item.name}
+                                </th>
 
-                                    <td className="items-center justify-center px-6 py-4 text-xl ">
-                                        {/* <!-- Modal toggle --> */}
-                                        <button
-                                            href="#"
-                                            type="button"
-                                            data-modal-target="editUserModal"
-                                            data-modal-show="editUserModal"
-                                            className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
-                                            onClick={() => {
-                                                // setUser(u);
-                                                setEditProcessModal(true);
-                                            }}
-                                        >
-                                            <AiFillEdit />
-                                        </button>
-                                        {/*  */}
-                                        <button
-                                            href="#"
-                                            type="button"
-                                            data-modal-target="editUserModal"
-                                            data-modal-show="editUserModal"
-                                            className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
-                                            // onClick={() => {
-                                            //     setUser(u);
-                                            //     setDeleteUser(true);
-                                            // }}
-                                        >
-                                            <AiFillDelete className="text-red-800" />
-                                        </button>
-                                        <button
-                                            href="#"
-                                            type="button"
-                                            data-modal-target="editUserModal"
-                                            data-modal-show="editUserModal"
-                                            className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
-                                            onClick={() => {
-                                                // setUser(u);
-                                                setPrintProcessModal(true);
-                                            }}
-                                        >
-                                            <AiFillPrinter className="text-blue-800" />
-                                        </button>
-                                    </td>
-                                </tr>
-                            {/* ))} */}
+                                <td className="items-center justify-center px-6 py-4 text-xl ">
+                                    {/* <!-- Modal toggle --> */}
+                                    <button
+                                        href="#"
+                                        type="button"
+                                        data-modal-target="editUserModal"
+                                        data-modal-show="editUserModal"
+                                        className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
+                                        onClick={() => {
+                                            setProcess(item);
+                                            setEditProcessModal(true);
+                                        }}
+                                    >
+                                        <AiFillEdit />
+                                    </button>
+                                    {/*  */}
+                                    <button
+                                        href="#"
+                                        type="button"
+                                        data-modal-target="editUserModal"
+                                        data-modal-show="editUserModal"
+                                        className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
+                                        onClick={() => handleDelete(item.id)}
+                                    >
+                                        <AiFillDelete className="text-red-800" />
+                                    </button>
+                                    <button
+                                        href="#"
+                                        type="button"
+                                        data-modal-target="editUserModal"
+                                        data-modal-show="editUserModal"
+                                        className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
+                                        onClick={() => {
+                                            // setUser(u);
+                                            setPrintProcessModal(true);
+                                        }}
+                                    >
+                                        <AiFillPrinter className="text-blue-800" />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
-           
+
             <AddProcess
                 visible={addProcessModal}
                 onClose={handleCloseModal}
                 // userInfo={user}
-            /> 
-            <EditProcess visible={editProcessModal}
-            onClose={handleCloseModal}/>
-            <PrintProcess visible={printProcessModal}
-            onClose ={handleCloseModal}/>
+            />
+            <EditProcess
+                visible={editProcessModal}
+                onClose={handleCloseModal}
+                process={process}
+            />
+            <PrintProcess
+                visible={printProcessModal}
+                onClose={handleCloseModal}
+            />
         </div>
-  );
+    );
 };
 
 export default ProcessManager;
