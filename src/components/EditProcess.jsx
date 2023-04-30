@@ -18,7 +18,15 @@ const EditProcess = ({ visible, onClose, process }) => {
                 },
             })
             .then((data) => {
-                setSubjects(data.data);
+                let lst = [];
+
+                for (let item of data.data) {
+                    if (!item.requestUserMail) {
+                        lst.push(item);
+                    }
+                }
+
+                setSubjects(lst);
             });
     }, []);
 
