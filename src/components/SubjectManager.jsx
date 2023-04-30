@@ -57,27 +57,32 @@ const SubjectManager = () => {
     };
 
     const handleDeleteSubject = () => {
-        axiosInstance
-            .delete(API_ROUTES.deleteSubject + `?id=${subject.id}`, {
-                headers: {
-                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
-                },
-            })
-            .then((data) => {
-                alert(data.data);
-                setSubject(undefined)
-                axiosInstance
-                    .get(API_ROUTES.getSubjects, {
-                        headers: {
-                            Authorization:
-                                'bearer ' + sessionStorage.getItem('token'),
-                        },
-                    })
-                    .then((data) => {
-                        setSubjects(data.data);
-                    });
-            })
-            .catch((err) => console.log(err));
+        if (subject) {
+            axiosInstance
+                .delete(API_ROUTES.deleteSubject + `?id=${subject.id}`, {
+                    headers: {
+                        Authorization:
+                            'bearer ' + sessionStorage.getItem('token'),
+                    },
+                })
+                .then((data) => {
+                    alert(data.data);
+                    setSubject(undefined);
+                    axiosInstance
+                        .get(API_ROUTES.getSubjects, {
+                            headers: {
+                                Authorization:
+                                    'bearer ' + sessionStorage.getItem('token'),
+                            },
+                        })
+                        .then((data) => {
+                            setSubjects(data.data);
+                        });
+                })
+                .catch((err) => console.log(err));
+        } else {
+            alert('Subject is not selected.');
+        }
     };
 
     return (
@@ -154,13 +159,19 @@ const SubjectManager = () => {
                         </button>
                         <button
                             className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-yellow-500 "
-                            onClick={() => setUpdateSubjectModal(true)}
+                            onClick={() => {
+                                if (subject) setUpdateSubjectModal(true);
+                                else alert('Subject is not selected.');
+                            }}
                         >
                             Chỉnh sửa môn học
                         </button>
                         <button
                             className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-blue-500"
-                            onClick={() => setCloneSubjectModal(true)}
+                            onClick={() => {
+                                if (subject) setCloneSubjectModal(true);
+                                else alert('Subject is not selected.');
+                            }}
                         >
                             Sao chép môn học
                         </button>
