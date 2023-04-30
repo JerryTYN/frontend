@@ -1,19 +1,8 @@
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import React, { useEffect, useState } from 'react';
-import { Textarea } from '@material-tailwind/react';
-import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
-import { MdOutlineLockReset } from 'react-icons/md';
 import { API_ROUTES, axiosInstance } from '../cons';
-const faculties = [
-    'Unknow',
-    'Công nghệ thông tin',
-    'Khoa học máy tính',
-    'Kỹ thuật phần mềm',
-    'Khoa học dữ liệu',
-    'Hệ thống thông tin',
-    //   "Công nghệ ô tô",
-];
+
 const EditProcess = ({ visible, onClose, process }) => {
     const [processName, setProcessName] = useState('');
     const [semesterTotal, setSemesterTotal] = useState(0);
@@ -35,7 +24,6 @@ const EditProcess = ({ visible, onClose, process }) => {
 
     useEffect(() => {
         setProcessName(process.name);
-        setSemester(1);
 
         if (process.subjectCurriculumModels)
             setSemesterTotal(process.subjectCurriculumModels.length);

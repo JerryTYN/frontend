@@ -14,6 +14,7 @@ export const API_ROUTES = {
     // SUBJECT
     getSubjects: '/api/Subject',
     getSubject: '/api/Subject/GetById',
+    requestSubject: '/api/Subject/Request',
 
     // CURRICULUM
     createProcess: '/api/Curriculum',
