@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { API_ROUTES, axiosInstance } from "../cons";
 import {
   AiOutlineRead,
   AiOutlineReconciliation,
@@ -12,27 +13,73 @@ import { Subjects } from "../utils/subject";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [numberUser, setNumberUser] = useState(0);
+  const [numberProcess, setNumberProcess] = useState(0)
+  const [numberSubject, setNumberSubject] = useState(0)
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState();
+  const [subjects, setSubjects]= useState([])
   useEffect(() => {
-    axios.get("http://localhost:3003/teacher").then((res) => {
-      setUsers(res.data);
-    });
+    axiosInstance
+      .get(API_ROUTES.getListUser, {
+        headers: {
+          Authorization: "bearer " + sessionStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setUsers(res.data);
+        setNumberUser(res.data.length);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
+  useEffect(() => {
+    axiosInstance
+      .get(API_ROUTES.getProcesses, {
+        headers: {
+          Authorization: "bearer " + sessionStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        // setUsers(res.data);
+        console.log(res.data)
+        setNumberProcess(res.data.length);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(() => {
+    axiosInstance
+      .get(API_ROUTES.getSubjects, {
+        headers: {
+          Authorization: "bearer " + sessionStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setSubjects(res.data);
+        console.log(res.data)
+        setNumberSubject(res.data.length);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+ 
   return (
     <div className="flex-1 h-[580px] bg-stone-50">
       <div className="flex items-center justify-center p-4 font-semibold text-gray-700 space-x-36 text-md h-36">
         <div className="flex w-1/5 p-4 bg-white rounded-md shadow-lg h-30">
           <div className="flex-1">
             <h3 className="">
-              Tổng đề
-              <br /> cương môn học
+              Tổng 
+              <br />  môn học
             </h3>
-            <h1 className="text-3xl font-bold text-gray-800">1741</h1>
+            <h1 className="text-3xl font-bold text-gray-800">{numberSubject}</h1>
           </div>
           <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500 ">
             <AiOutlineRead className="text-lg font-bold text-white" />
@@ -44,7 +91,7 @@ const Dashboard = () => {
               Tổng
               <br /> chương trình học
             </h3>
-            <h1 className="text-3xl font-bold text-gray-800">821</h1>
+            <h1 className="text-3xl font-bold text-gray-800">{numberProcess}</h1>
           </div>
           <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500 ">
             <AiOutlineReconciliation className="text-lg font-bold text-white" />
@@ -64,7 +111,7 @@ const Dashboard = () => {
             <h3 className="">
               Tổng <br /> giảng viên
             </h3>
-            <h1 className="text-3xl font-bold text-gray-800">3012</h1>
+            <h1 className="text-3xl font-bold text-gray-800">{numberUser}</h1>
           </div>
           <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
             <AiOutlineUser className="text-lg font-bold text-white " />
@@ -108,15 +155,17 @@ const Dashboard = () => {
                       className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
                     >
                       <div className="pl-3">
-                        <div className="text-base font-semibold">{u.name}</div>
+                        <div className="text-base font-semibold">
+                          {u.fullName}
+                        </div>
                         <div className="font-normal text-gray-500">
                           {u.email}
                         </div>
                       </div>
                     </th>
                     <td className="px-6 py-4">{u.faculty}</td>
-                    <td className="px-6 py-4">{u.dob}</td>
-                    <td className="px-6 py-4">{u.pob}</td>
+                    <td className="px-6 py-4">{u.dateOfBirth}</td>
+                    <td className="px-6 py-4">{u.placeOfBirth}</td>
 
                     {/* <td className="px-6 py-4 ">
                       
@@ -146,7 +195,7 @@ const Dashboard = () => {
           </h2>
           <div className="w-[350px] h-[400px] bg-white rounded-lg shadow-xl overflow-auto ">
             <div className="flex-1 w-full pt-2 pl-2 ">
-              {Subjects.map((sj, id) => (
+              {subjects.map((sj, id) => (
                 <div
                   key={id}
                   className="w-full pb-2 pl-4 text-base text-gray-900 hover:bg-stone-50 hover:rounded-lg hover:cursor-pointer"
@@ -158,11 +207,11 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <EditUserModal
+      {/* <EditUserModal
         onClose={handleCloseModal}
         visible={openModal}
         userInfo={user}
-      />
+      /> */}
     </div>
   );
 };

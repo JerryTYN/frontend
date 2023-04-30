@@ -1110,7 +1110,7 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
                                         {tableRowCDR &&
                                             tableRowCDR.map((item, i) => {
                                                 return (
-                                                    <tr key={i} id={i}>
+                                                    <tr  key={`row-${item.id}`} id={i}>
                                                         <td
                                                             scope="row"
                                                             className="w-10 font-medium text-center border border-gray-400 "
@@ -1240,7 +1240,7 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
                                         {tableRowKHGD &&
                                             tableRowKHGD.map((item, i) => {
                                                 return (
-                                                    <tr id={i}>
+                                                    <tr  key={`row-${item.id}`} id={i}>
                                                         <th
                                                             scope="row"
                                                             className="w-10 font-medium border border-gray-400"
@@ -1381,7 +1381,8 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
                             <div className=" relative w-[1100px] flex flex-col text-sm text-gray-500">
                                 <table className="w-full text-sm ">
                                     <thead className="">
-                                        <tr>
+                                        <tr
+                                        >
                                             <th
                                                 scope="col"
                                                 className="px-1 border border-gray-400 "
@@ -1420,6 +1421,7 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
                                             tableRowPPDG.map((item, i) => {
                                                 return (
                                                     <tr
+                                                    key={`row-${item.id}`}
                                                         id={i}
                                                         className={
                                                             item.className
@@ -1599,6 +1601,7 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
                                             tableRowTPDG.map((item, i) => {
                                                 return (
                                                     <tr
+                                                    key={`row-${item.id}`}
                                                         id={i}
                                                         className={
                                                             item.className
