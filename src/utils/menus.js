@@ -4,7 +4,9 @@ export const Menus = [
 
     {title: "Dashboard", icon: <AiOutlineAppstore/>, url:"Dashboard", roles: "User-Admin" },
     {title: "Quản lý chương trình", icon: <AiFillHdd/>, url: "ProcessManager", roles: "Admin"},
-    {title: "Quản lý môn học", icon: <AiFillContainer/>, url:"SubjectManager", roles: "User-Admin"},
+    {title: "Quản lý môn học", icon: <AiFillContainer/>, url:"SubjectManager", roles: "Admin"},
     {title: "Quản lý giảng viên", icon: <AiOutlineUserSwitch/>, url:"TeacherManager", roles: "Admin"},
+    {title: "Quản lý Môn học", icon: <AiFillContainer/>, url:"SubjectManager_Teacher_role", roles: "User"},
+    
     
 ]

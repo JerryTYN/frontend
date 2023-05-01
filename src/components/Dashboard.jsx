@@ -71,7 +71,7 @@ const Dashboard = () => {
   }, []);
  
   return (
-    <div className="flex-1 h-[580px] bg-stone-50">
+    <div className="flex-1 h-[680px] bg-stone-50">
       <div className="flex items-center justify-center p-4 font-semibold text-gray-700 space-x-36 text-md h-36">
         <div className="flex w-1/5 p-4 bg-white rounded-md shadow-lg h-30">
           <div className="flex-1">
@@ -123,7 +123,7 @@ const Dashboard = () => {
           <h2 className="relative w-40 p-2 font-bold bg-gradient-to-tl from-green-700 to-yellow-500 rounded-t-md text-gray-50">
             Giảng viên
           </h2>
-          <div className=" h-[400px] bg-white rounded-b-lg shadow-xl overflow-auto">
+          <div className=" h-[500px] w-[900px] bg-white rounded-b-lg shadow-xl overflow-auto">
             <table className="flex-1 w-full text-sm text-left text-gray-500 ">
               <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-stone-200 ">
                 <tr>
@@ -193,7 +193,7 @@ const Dashboard = () => {
           <h2 className="p-2 font-bold w-60 bg-gradient-to-tl from-red-700 to-gray-500 rounded-t-md text-gray-50">
             Danh sách môn học
           </h2>
-          <div className="w-[350px] h-[400px] bg-white rounded-lg shadow-xl overflow-auto ">
+          <div className="w-[350px] h-[500px] bg-white rounded-lg shadow-xl overflow-auto ">
             <div className="flex-1 w-full pt-2 pl-2 ">
               {subjects.map((sj, id) => (
                 <div

@@ -63,7 +63,7 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
             dateOfBirth: dayOfBirth,
             gender: gender,
         };
-        console.log(userProfile);
+        // console.log(userProfile);
         axiosInstance
             .put(API_ROUTES.updateProfile, userProfile, {
                 headers: {
@@ -74,7 +74,8 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
                 alert(data.data.message);
             })
             .catch((err) => {
-                console.log(err);
+                alert(err.response.data)
+                // console.log(err);
             });
     };
 
