@@ -170,7 +170,9 @@ const ProcessManager = () => {
                                         className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
                                         onClick={() => {
                                             // setUser(u);
+                                            setProcess(item);
                                             setPrintProcessModal(true);
+                                            
                                         }}
                                     >
                                         <AiFillPrinter className="text-blue-800" />
@@ -195,6 +197,7 @@ const ProcessManager = () => {
             <PrintProcess
                 visible={printProcessModal}
                 onClose={handleCloseModal}
+                process={process}
             />
         </div>
     );
