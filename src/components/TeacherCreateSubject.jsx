@@ -450,192 +450,192 @@ const TeacherCreateSubject = ({ visible, onClose, subject }) => {
         if (subject) {
             setSubjectId(subject.id);
             setSubjectName(subject.name);
-            setTheory(subject.theoryCredits);
-            setPractice(subject.practiceCredits);
-            setSelfLearning(subject.selfLearningCredits);
-            setAbstract(subject.abstract);
-            setOther(subject.other);
+            // setTheory(subject.theoryCredits);
+            // setPractice(subject.practiceCredits);
+            // setSelfLearning(subject.selfLearningCredits);
+            // setAbstract(subject.abstract);
+            // setOther(subject.other);
 
-            let teachers = subject.teachers.split('\n').map((value, id) => {
-                return {
-                    type: 'text',
-                    id: id,
-                    value: value,
-                    className: 'border-b-2  focus:outline-none',
-                };
-            });
-            setArrGVPT(teachers);
+            // let teachers = subject.teachers.split('\n').map((value, id) => {
+            //     return {
+            //         type: 'text',
+            //         id: id,
+            //         value: value,
+            //         className: 'border-b-2  focus:outline-none',
+            //     };
+            // });
+            // setArrGVPT(teachers);
 
-            let documents = [
-                {
-                    type: 'text',
-                    id: 0,
-                    value: '',
-                    className: 'border-b-2 focus:outline-none',
-                },
-            ];
-            if (subject.documents) {
-                documents = subject.documents.split('\n').map((value, id) => {
-                    return {
-                        type: 'text',
-                        id: id,
-                        value: value,
-                        className: 'border-b-2  focus:outline-none',
-                    };
-                });
-            }
-            setArrTLHT(documents);
+            // let documents = [
+            //     {
+            //         type: 'text',
+            //         id: 0,
+            //         value: '',
+            //         className: 'border-b-2 focus:outline-none',
+            //     },
+            // ];
+            // if (subject.documents) {
+            //     documents = subject.documents.split('\n').map((value, id) => {
+            //         return {
+            //             type: 'text',
+            //             id: id,
+            //             value: value,
+            //             className: 'border-b-2  focus:outline-none',
+            //         };
+            //     });
+            // }
+            // setArrTLHT(documents);
 
-            let goals = [
-                {
-                    type: 'text',
-                    id: 0,
-                    value: '',
-                    className: 'border-b-2 focus:outline-none',
-                },
-            ];
-            if (subject.goals) {
-                goals = subject.goals.split('\n').map((value, id) => {
-                    return {
-                        type: 'text',
-                        id: id,
-                        value: value,
-                        className: 'border-b-2  focus:outline-none',
-                    };
-                });
-            }
-            setArrMTHP(goals);
+            // let goals = [
+            //     {
+            //         type: 'text',
+            //         id: 0,
+            //         value: '',
+            //         className: 'border-b-2 focus:outline-none',
+            //     },
+            // ];
+            // if (subject.goals) {
+            //     goals = subject.goals.split('\n').map((value, id) => {
+            //         return {
+            //             type: 'text',
+            //             id: id,
+            //             value: value,
+            //             className: 'border-b-2  focus:outline-none',
+            //         };
+            //     });
+            // }
+            // setArrMTHP(goals);
 
-            let a = [
-                {
-                    type: 'text',
-                    id: 0,
-                    value: '',
-                    className: 'border-b-2 focus:outline-none',
-                },
-            ];
-            if (subject.a) {
-                a = subject.a.split('\n').map((value, id) => {
-                    return {
-                        type: 'text',
-                        id: id,
-                        value: value,
-                        className: 'border-b-2  focus:outline-none',
-                    };
-                });
-            }
-            setArrHPHT(a);
+            // let a = [
+            //     {
+            //         type: 'text',
+            //         id: 0,
+            //         value: '',
+            //         className: 'border-b-2 focus:outline-none',
+            //     },
+            // ];
+            // if (subject.a) {
+            //     a = subject.a.split('\n').map((value, id) => {
+            //         return {
+            //             type: 'text',
+            //             id: id,
+            //             value: value,
+            //             className: 'border-b-2  focus:outline-none',
+            //         };
+            //     });
+            // }
+            // setArrHPHT(a);
 
-            let b = [
-                {
-                    type: 'text',
-                    id: 0,
-                    value: '',
-                    className: 'border-b-2 focus:outline-none',
-                },
-            ];
-            if (subject.b) {
-                b = subject.b.split('\n').map((value, id) => {
-                    return {
-                        type: 'text',
-                        id: id,
-                        value: value,
-                        className: 'border-b-2  focus:outline-none',
-                    };
-                });
-            }
-            setArrHPTQ(b);
+            // let b = [
+            //     {
+            //         type: 'text',
+            //         id: 0,
+            //         value: '',
+            //         className: 'border-b-2 focus:outline-none',
+            //     },
+            // ];
+            // if (subject.b) {
+            //     b = subject.b.split('\n').map((value, id) => {
+            //         return {
+            //             type: 'text',
+            //             id: id,
+            //             value: value,
+            //             className: 'border-b-2  focus:outline-none',
+            //         };
+            //     });
+            // }
+            // setArrHPTQ(b);
 
-            let c = [
-                {
-                    type: 'text',
-                    id: 0,
-                    value: '',
-                    className: 'border-b-2 focus:outline-none',
-                },
-            ];
-            if (subject.c) {
-                c = subject.c.split('\n').map((value, id) => {
-                    return {
-                        type: 'text',
-                        id: id,
-                        value: value,
-                        className: 'border-b-2  focus:outline-none',
-                    };
-                });
-            }
-            setArrHPSH(c);
+            // let c = [
+            //     {
+            //         type: 'text',
+            //         id: 0,
+            //         value: '',
+            //         className: 'border-b-2 focus:outline-none',
+            //     },
+            // ];
+            // if (subject.c) {
+            //     c = subject.c.split('\n').map((value, id) => {
+            //         return {
+            //             type: 'text',
+            //             id: id,
+            //             value: value,
+            //             className: 'border-b-2  focus:outline-none',
+            //         };
+            //     });
+            // }
+            // setArrHPSH(c);
 
-            let evaluates = subject.evaluates.map((e, idx) => {
-                return {
-                    id: idx,
-                    value: {
-                        order: e.order,
-                        clo: e.clo,
-                        test: e.test,
-                        method: e.method,
-                        proportion: e.proportion,
-                        target: e.target,
-                    },
-                    className: '',
-                };
-            });
+            // let evaluates = subject.evaluates.map((e, idx) => {
+            //     return {
+            //         id: idx,
+            //         value: {
+            //             order: e.order,
+            //             clo: e.clo,
+            //             test: e.test,
+            //             method: e.method,
+            //             proportion: e.proportion,
+            //             target: e.target,
+            //         },
+            //         className: '',
+            //     };
+            // });
 
-            if (evaluates.length) {
-                setTableRowPPDG(evaluates);
-            }
+            // if (evaluates.length) {
+            //     setTableRowPPDG(evaluates);
+            // }
 
-            const cdr = subject.subjectOutputStandards.map((item, idx) => {
-                return {
-                    id: idx,
-                    value: {
-                        clo: item.clo,
-                        content: item.content,
-                        soPerPi: item.content,
-                    },
-                    className: '',
-                };
-            });
+            // const cdr = subject.subjectOutputStandards.map((item, idx) => {
+            //     return {
+            //         id: idx,
+            //         value: {
+            //             clo: item.clo,
+            //             content: item.content,
+            //             soPerPi: item.content,
+            //         },
+            //         className: '',
+            //     };
+            // });
 
-            if (cdr.length) {
-                setTableRowCDR(cdr);
-            }
+            // if (cdr.length) {
+            //     setTableRowCDR(cdr);
+            // }
 
-            let khgd = subject.subjectContents.map((item, idx) => {
-                return {
-                    id: idx,
-                    value: {
-                        order: item.order,
-                        content: item.content,
-                        nLessons: item.nLessons,
-                        clos: item.clos,
-                        method: item.method,
-                        bonus: item.bonus,
-                    },
-                    className: '',
-                };
-            });
+            // let khgd = subject.subjectContents.map((item, idx) => {
+            //     return {
+            //         id: idx,
+            //         value: {
+            //             order: item.order,
+            //             content: item.content,
+            //             nLessons: item.nLessons,
+            //             clos: item.clos,
+            //             method: item.method,
+            //             bonus: item.bonus,
+            //         },
+            //         className: '',
+            //     };
+            // });
 
-            if (khgd.length) {
-                setTableRowKHGD(khgd);
-            }
+            // if (khgd.length) {
+            //     setTableRowKHGD(khgd);
+            // }
 
-            let tpdg = subject.evalElements.map((item, idx) => {
-                return {
-                    id: idx,
-                    value: {
-                        order: item.order,
-                        name: item.name,
-                        method: item.method,
-                        proportion: item.proportion,
-                    },
-                    className: '',
-                };
-            });
+            // let tpdg = subject.evalElements.map((item, idx) => {
+            //     return {
+            //         id: idx,
+            //         value: {
+            //             order: item.order,
+            //             name: item.name,
+            //             method: item.method,
+            //             proportion: item.proportion,
+            //         },
+            //         className: '',
+            //     };
+            // });
 
-            if (tpdg.length) {
-                setTableRowTPDG(tpdg);
-            }
+            // if (tpdg.length) {
+            //     setTableRowTPDG(tpdg);
+            // }
         }
     }, [subject]);
 
