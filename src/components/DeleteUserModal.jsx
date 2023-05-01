@@ -19,7 +19,7 @@ const DeleteUserModal = ({ visible, userInfo, onClose }) => {
       .then((res) => {
         alert(res.data.message);
         onClose();
-        console.log(res);
+        // console.log(res);
       });
   };
   return (

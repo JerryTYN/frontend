@@ -53,11 +53,11 @@ const UserProfile = () => {
                 },
             })
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setUserInfo(data.data.result);
             })
             .catch((err) => {
-                console.log(err);
+                alert(err.response.data);
             });
     }, []);
 
@@ -115,17 +115,15 @@ const UserProfile = () => {
                 }
             )
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 alert(data.data.message);
             })
             .catch((err) => {
-                console.log(err);
+                
                 alert(err.response.data.message);
             });
     };
-    if (dayOfBirth) {
-        console.log(typeof dayOfBirth, dayOfBirth);
-    }
+
     const handleUpdateProfile = (e) => {
         let userProfile = {
             email: email,
@@ -136,7 +134,7 @@ const UserProfile = () => {
             dateOfBirth: dayOfBirth,
             gender: gender,
         };
-        console.log(userProfile);
+        // console.log(userProfile);
         axiosInstance
             .put(API_ROUTES.updateProfile, userProfile, {
                 headers: {
@@ -147,7 +145,7 @@ const UserProfile = () => {
                 alert(data.data.message);
             })
             .catch((err) => {
-                console.log(err);
+                alert(err.response.data.message);
             });
     };
     return (

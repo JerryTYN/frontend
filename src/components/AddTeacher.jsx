@@ -28,7 +28,7 @@ const AddTeacher = ({ visible, onClose }) => {
             faculty: faculties[faculty],
         };
 
-        console.log(user);
+        // console.log(user);
         axiosInstance
             .post(API_ROUTES.addUser, user, {
                 headers: {

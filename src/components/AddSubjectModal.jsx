@@ -378,14 +378,16 @@ const AddSubjectModal = ({ visible, onClose }) => {
     };
 
     const deleteTableRowsPPDG = (index) => {
-        const rows = [...tableRowPPDG];
-        rows.splice(index, 1);
-        setTableRowPPDG(rows);
+        const newTableRowsPPDG = [...tableRowPPDG];
+        newTableRowsPPDG.splice(index, 1);
+        setTableRowPPDG(newTableRowsPPDG);
+        console.log(newTableRowsPPDG);
     };
 
     const handleTableRowsPPDG = (index, key, value) => {
         setTableRowPPDG((prev) => {
             prev[index].value[key] = value;
+            console.log('Handle Change:', prev);
             return prev;
         });
     };
@@ -915,7 +917,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                         {tableRowCDR.map((item, i) => {
                                             return (
                                                 <tr
-                                                    key={i}
+                                                    key={`row-${item.id}`}
                                                     id={i}
                                                     className={item.className}
                                                 >
@@ -923,7 +925,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         scope="row"
                                                         className="w-10 font-medium text-center border border-gray-400 "
                                                     >
-                                                        {item.value['clo']}
+                                                        {i + 1}
                                                     </td>
                                                     <td className=" border pt-2 relative w-[800px] border-gray-400  ">
                                                         <textarea
@@ -1042,13 +1044,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                             return (
                                                 <tr
                                                     id={i}
+                                                    key={`row-${item.id}`}
                                                     className={item.className}
                                                 >
                                                     <th
                                                         scope="row"
                                                         className="w-10 font-medium border border-gray-400"
                                                     >
-                                                        {item.value['order']}
+                                                        {i + 1}
                                                     </th>
                                                     <td className="relative break-all border border-gray-400 w-96">
                                                         <ReactQuill
@@ -1203,6 +1206,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                         {tableRowPPDG.map((item, i) => {
                                             return (
                                                 <tr
+                                                    key={`row-${item.id}`}
                                                     id={i}
                                                     className={item.className}
                                                 >
@@ -1215,16 +1219,17 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             className="w-full text-center border-b-2 focus:outline-none"
                                                             min={0}
                                                             defaultValue={0}
-                                                            onChange={(e) =>
+                                                            onChange={(e) => {
+                                                                // console.log(item.id);
                                                                 handleTableRowsPPDG(
-                                                                    i,
+                                                                    item.id,
                                                                     'clo',
                                                                     Number(
                                                                         e.target
                                                                             .value
                                                                     )
-                                                                )
-                                                            }
+                                                                );
+                                                            }}
                                                         />
                                                     </th>
                                                     <td className="relative p-2 break-all border border-gray-400 w-96">
@@ -1233,7 +1238,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             className="w-full border-b-2 focus:outline-none"
                                                             onChange={(e) =>
                                                                 handleTableRowsPPDG(
-                                                                    i,
+                                                                    item.id,
                                                                     'test',
                                                                     e.target
                                                                         .value
@@ -1247,7 +1252,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             className="w-full border-b-2 focus:outline-none"
                                                             onChange={(e) =>
                                                                 handleTableRowsPPDG(
-                                                                    i,
+                                                                    item.id,
                                                                     'method',
                                                                     e.target
                                                                         .value
@@ -1263,7 +1268,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             defaultValue={0}
                                                             onChange={(e) =>
                                                                 handleTableRowsPPDG(
-                                                                    i,
+                                                                    item.id,
                                                                     'proportion',
                                                                     Number(
                                                                         e.target
@@ -1281,7 +1286,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             defaultValue={0}
                                                             onChange={(e) =>
                                                                 handleTableRowsPPDG(
-                                                                    i,
+                                                                    item.id,
                                                                     'target',
                                                                     Number(
                                                                         e.target
@@ -1292,7 +1297,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         />
                                                     </td>
                                                     <td className="w-10 pl-4">
-                                                        {item.id === 0 ? (
+                                                        {i === 0 ? (
                                                             <button
                                                                 className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                                 onClick={
@@ -1304,11 +1309,16 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                         ) : (
                                                             <button
                                                                 className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
-                                                                onClick={() =>
+                                                                onClick={() => {
+                                                                    console.log(
+                                                                        'Dong thu',
+                                                                        i
+                                                                    );
                                                                     deleteTableRowsPPDG(
                                                                         i
-                                                                    )
-                                                                }
+                                                                    );
+                                                                    // console.log(tableRowPPDG);
+                                                                }}
                                                             >
                                                                 -
                                                             </button>
@@ -1360,6 +1370,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                             return (
                                                 <tr
                                                     id={i}
+                                                    key={`row-${item.id}`}
                                                     className={item.className}
                                                 >
                                                     <th
