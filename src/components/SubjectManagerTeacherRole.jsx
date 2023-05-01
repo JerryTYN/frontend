@@ -77,7 +77,7 @@ const SubjectManagerTeacherRole = ({ userInfo }) => {
                 },
             })
             .then((data) => setSj(data.data.result))
-            .catch((err) => console.log(err));
+            .catch((err) => alert(err.response.data));
     };
 
     return (
@@ -104,22 +104,22 @@ const SubjectManagerTeacherRole = ({ userInfo }) => {
                 </div>
             </div>
 
-            <div className="flex w-full">
-                <div className="flex-col w-1/2 overflow-auto ">
+            <div className="flex w-full space-x-10 ">
+                <div className="flex-col w-3/5 overflow-auto ">
                     <div className="w-full">
-                        <table>
+                        <table className='w-full'>
                             <thead className="sticky top-0">
-                                <tr className="bg-gray-300">
-                                    <th>Danh sách môn học</th>
+                                <tr className="bg-gray-300 ">
+                                    <th className='p-2.5'>Danh sách môn học</th>
                                 </tr>
                                 <tr className="flex bg-gray-200 ">
-                                    <th className="w-32 border border-gray-700">
+                                    <th className="w-48 border border-gray-700 p-1.5">
                                         Mã môn học
                                     </th>
-                                    <th className="border border-gray-700 w-72">
+                                    <th className="border border-gray-700 w-96 p-1.5">
                                         Tên môn học
                                     </th>
-                                    <th className="flex-1 border border-gray-700">
+                                    <th className="flex-1 border border-gray-700 p-1.5">
                                         Tổng tín chỉ
                                     </th>
                                 </tr>
@@ -134,10 +134,10 @@ const SubjectManagerTeacherRole = ({ userInfo }) => {
                                                 setTeacherViewSJModal(true);
                                             }}
                                         >
-                                            <td className="w-32 border border-gray-700">
+                                            <td className="w-48 border border-gray-700">
                                                 {subject.id}
                                             </td>
-                                            <td className="border border-gray-700 w-72">
+                                            <td className="border border-gray-700 w-96">
                                                 {subject.name}
                                             </td>
                                             <td className="flex-1 border border-gray-700">
@@ -150,18 +150,18 @@ const SubjectManagerTeacherRole = ({ userInfo }) => {
                         </table>
                     </div>
                 </div>
-                <div className="flex-col w-1/2 overflow-auto ">
+                <div className="flex-col w-2/5 overflow-auto ">
                     <div className="w-full ">
                         <table className="w-full">
                             <thead className="sticky top-0 w-full ">
                                 <tr className="bg-gray-300">
-                                    <th>Danh sách yêu cầu</th>
+                                    <th className='p-2.5'>Danh sách yêu cầu</th>
                                 </tr>
                                 <tr className="flex bg-gray-200">
-                                    <th className="w-32 border border-gray-700">
+                                    <th className="w-44 border border-gray-700 p-1.5">
                                         Mã môn học
                                     </th>
-                                    <th className="w-full border border-gray-700">
+                                    <th className="w-full border border-gray-700 p-1.5">
                                         Tên môn học
                                     </th>
                                 </tr>
@@ -180,7 +180,7 @@ const SubjectManagerTeacherRole = ({ userInfo }) => {
                                                     );
                                                 }}
                                             >
-                                                <td className="w-32 border border-gray-700">
+                                                <td className="border border-gray-700 w-44">
                                                     {item.id}
                                                 </td>
                                                 <td className="w-full border border-gray-700">

@@ -10,7 +10,7 @@ const Login = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        console.log(process.env.REACT_APP_API_URL);
+        // console.log(process.env.REACT_APP_API_URL);
 
         axiosInstance
             .post(API_ROUTES.login, { email: email, password: password })
@@ -18,11 +18,12 @@ const Login = () => {
                 let result = data.data.result;
                 sessionStorage.setItem('token', result.token);
 
-                console.log(result);
+                // console.log(result);
                 navigate('/home/dashboard');
             })
             .catch((err) => {
-                console.log(err.response.data);
+                alert(err.response.data)
+                // console.log(err.response.data);
             });
     };
 

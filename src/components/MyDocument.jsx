@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 const MyDocument = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   return (
     // <Document>
     //   <Page size="A4"style={styles.page} id="report">

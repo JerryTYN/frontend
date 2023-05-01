@@ -504,14 +504,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                         />
                                         {item.id === 0 ? (
                                             <button
-                                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                 onClick={addInputTLHT}
                                             >
                                                 +
                                             </button>
                                         ) : (
                                             <button
-                                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                                 onClick={() =>
                                                     handleDeleteInputTLHT(i)
                                                 }
@@ -524,7 +524,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             })}
                         </div>
                         {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputTLHT}
             >
               +
@@ -549,14 +549,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                         />
                                         {item.id === 0 ? (
                                             <button
-                                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                 onClick={addInputMTHP}
                                             >
                                                 +
                                             </button>
                                         ) : (
                                             <button
-                                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                                 onClick={() =>
                                                     handleDeleteInputMTHP(i)
                                                 }
@@ -569,7 +569,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             })}
                         </div>
                         {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputMTHP}
             >
               +
@@ -604,14 +604,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                         />
                                         {item.id === 0 ? (
                                             <button
-                                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                 onClick={addInputHPHT}
                                             >
                                                 +
                                             </button>
                                         ) : (
                                             <button
-                                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                                 onClick={() =>
                                                     handleDeleteInputHPHT(i)
                                                 }
@@ -624,7 +624,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             })}
                         </div>
                         {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputHPHT}
             >
               +
@@ -648,14 +648,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                         />
                                         {item.id === 0 ? (
                                             <button
-                                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                 onClick={addInputHPTQ}
                                             >
                                                 +
                                             </button>
                                         ) : (
                                             <button
-                                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                                 onClick={() =>
                                                     handleDeleteInputHPTQ(i)
                                                 }
@@ -668,7 +668,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             })}
                         </div>
                         {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputHPTQ}
             >
               +
@@ -692,14 +692,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                         />
                                         {item.id === 0 ? (
                                             <button
-                                                className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+                                                className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
                                                 onClick={addInputHPSH}
                                             >
                                                 +
                                             </button>
                                         ) : (
                                             <button
-                                                className=" border border-red-600 w-6 h-6 text-red-600 rounded-lg text-center"
+                                                className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                                 onClick={() =>
                                                     handleDeleteInputHPSH(i)
                                                 }
@@ -712,7 +712,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                             })}
                         </div>
                         {/* <button
-              className="w-6 h-6 text-center border border-green-600 text-green-600  rounded-lg "
+              className="w-6 h-6 text-center text-green-600 border border-green-600 rounded-lg "
               onClick={addInputHPSH}
             >
               +
@@ -1059,7 +1059,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             <button
                                                                 className="w-6 h-6 text-center text-red-600 border border-red-600 rounded-lg "
                                                                 onClick={() =>{
-                                                                    console.log("delete id",item.id);
+                                                                    // console.log("delete id",item.id);
                                                                     deleteTableRowsPPDG(
                                                                         item.id
                                                                     )
@@ -1182,7 +1182,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                         </div>
                         <h3>c.Thang điểm đánh giá: Theo học chế tín chỉ</h3>
                     </div>
-                    <div className="flex items-center justify-end space-x-6 pb-8">
+                    <div className="flex items-center justify-end pb-8 space-x-6">
                         <button className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold hover:bg-green-300 hover:text-gray-800">
                             Lưu
                         </button>
