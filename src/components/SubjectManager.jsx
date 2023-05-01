@@ -47,6 +47,16 @@ const SubjectManager = () => {
         setUpdateSubjectModal(false);
         setCloneSubjectModal(false);
         setRequestTeacherModal(false);
+
+        axiosInstance
+            .get(API_ROUTES.getSubjects, {
+                headers: {
+                    Authorization: 'bearer ' + sessionStorage.getItem('token'),
+                },
+            })
+            .then((data) => {
+                setSubjects(data.data);
+            });
     };
     const [selectedSubject, setSelectedSubject] = useState(null);
 
@@ -60,7 +70,7 @@ const SubjectManager = () => {
                 },
             })
             .then((data) => setSubject(data.data.result))
-            .catch((err) => console.log(err));
+            .catch((err) => alert(err.response.data));
     };
     // dep
     const handleExportPDF = async () => {
@@ -104,6 +114,35 @@ const SubjectManager = () => {
             //   );
         }
         pdf.save('file.pdf');
+    };
+
+    const handleDeleteSubject = () => {
+        if (subject) {
+            axiosInstance
+                .delete(API_ROUTES.deleteSubject + `?id=${subject.id}`, {
+                    headers: {
+                        Authorization:
+                            'bearer ' + sessionStorage.getItem('token'),
+                    },
+                })
+                .then((data) => {
+                    alert(data.data);
+                    setSubject(undefined);
+                    axiosInstance
+                        .get(API_ROUTES.getSubjects, {
+                            headers: {
+                                Authorization:
+                                    'bearer ' + sessionStorage.getItem('token'),
+                            },
+                        })
+                        .then((data) => {
+                            setSubjects(data.data);
+                        });
+                })
+                .catch((err) => console.log(err));
+        } else {
+            alert('Subject is not selected.');
+        }
     };
 
     // tach dc trang
@@ -201,9 +240,10 @@ const SubjectManager = () => {
     //
 
     const [requestTeacherModal, setRequestTeacherModal] = useState(false);
+    const [searchSubject, setSearchSubject] = useState('');
 
     return (
-        <div className="flex h-[610px] bg-white rounded-md shadow-lg overflow-hidden">
+        <div className="flex h-[690px] bg-white rounded-md shadow-lg overflow-hidden">
             <div className="flex flex-col p-4 border-r-4 border-gray-900- ">
                 <div className="sticky top-0 ">
                     <h1 className="pt-2 text-xl font-bold text-center text-gray-950 z">
@@ -236,42 +276,54 @@ const SubjectManager = () => {
                                 type="text"
                                 className="block w-64 p-2 pl-10 text-sm text-gray-900 bg-white border rounded-lg shadow-md border-1 focus:outline-none"
                                 placeholder="Tìm môn học"
+                                onChange={(e) =>
+                                    setSearchSubject(e.target.value)
+                                }
                             />
                         </div>
                     </div>
                 </div>
                 <hr />
                 <div className="flex-1 w-full pt-2 pl-2 overflow-y-auto">
-                    {subjects.map((sj, id) => (
-                        <div
-                            key={id}
-                            className={`w-full p-2 text-base text-gray-900  hover:rounded-lg hover:cursor-pointer ${
-                                selectedSubject === sj.name
-                                    ? 'bg-blue-500 rounded-lg text-white'
-                                    : ''
-                            }`}
-                            onClick={() => getSubjectHandler(sj)}
-                        >
-                            {sj.name}
-                        </div>
-                    ))}
+                    {subjects
+                        .filter((sj) =>
+                            sj.name
+                                .toLowerCase()
+                                .includes(searchSubject.toLowerCase())
+                        )
+                        .map((sj, id) => {
+                            // console.log("ten mon hoc",sj.name);
+                            return (
+                                <div
+                                    key={id}
+                                    className={`w-full p-2 text-base text-gray-900  hover:rounded-lg hover:cursor-pointer ${
+                                        selectedSubject === sj.name
+                                            ? 'bg-blue-500 rounded-lg text-white'
+                                            : ''
+                                    }`}
+                                    onClick={() => getSubjectHandler(sj)}
+                                >
+                                    {sj.name}
+                                </div>
+                            );
+                        })}
                 </div>
-                <div className="sticky bottom-0 flex items-center justify-center w-full p-1 border-2 border-black rounded-lg hover:cursor-pointer">
+                <button
+                    className="sticky bottom-0 flex items-center justify-center w-full p-1 border-2 border-black rounded-lg hover:cursor-pointer hover:bg-slate-100"
+                    onClick={() => setRequestTeacherModal(true)}
+                >
                     <label className="p-2.5 hover:cursor-pointer">
                         Tạo yêu cầu
                     </label>
-                    <button
-                        className="p-2.5 bg-black text-white rounded-lg "
-                        onClick={() => setRequestTeacherModal(true)}
-                    >
+                    <span className="p-2.5 bg-black text-white rounded-lg ">
                         <GoRequestChanges className="font-semibold" />
-                    </button>
-                </div>
+                    </span>
+                </button>
             </div>
             <div className="flex flex-col w-full">
                 {/* <h1 className="font-bold text-gray-50 text-md">Subject_view</h1> */}
                 <div className="flex-1 mx-auto">
-                    <div className="flex w-[850px] bg-gray-50 rounded-xl h-[520px] overflow-y-auto justify-center scrollbar-hide border-1  border-gray-900 ">
+                    <div className="flex w-[850px] bg-gray-50 rounded-xl h-[580px] overflow-y-auto justify-center scrollbar-hide border-1  border-gray-900 ">
                         {/* <center> */}
                         {/* <div> */}
 
@@ -288,13 +340,19 @@ const SubjectManager = () => {
                         </button>
                         <button
                             className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-yellow-500 "
-                            onClick={() => setUpdateSubjectModal(true)}
+                            onClick={() => {
+                                if (subject) setUpdateSubjectModal(true);
+                                else alert('Subject is not selected.');
+                            }}
                         >
                             Chỉnh sửa môn học
                         </button>
                         <button
                             className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-blue-500"
-                            onClick={() => setCloneSubjectModal(true)}
+                            onClick={() => {
+                                if (subject) setCloneSubjectModal(true);
+                                else alert('Subject is not selected.');
+                            }}
                         >
                             Sao chép môn học
                         </button>
@@ -310,7 +368,10 @@ const SubjectManager = () => {
                         <button type="button" onClick={handleExportPDF}>
                             Export PDF
                         </button>
-                        <button className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-red-500">
+                        <button
+                            className="hover:border-gray-400 shadow-md p-1.5 font-bold text-gray-50 border-2 border-gray-200 rounded-lg bg-red-500"
+                            onClick={handleDeleteSubject}
+                        >
                             Xóa môn học
                         </button>
                     </div>
@@ -325,15 +386,14 @@ const SubjectManager = () => {
             <UpdateSubjectModal
                 visible={updateSubjectModal}
                 onClose={handleCloseModal}
+                subject={subject}
             />
             <CloneSubjectModal
                 visible={cloneSubjectModal}
                 onClose={handleCloseModal}
+                subject={subject}
             />
-            <RequestToTeacher
-                visible={requestTeacherModal}
-                onClose={handleCloseModal}
-            />
+            <RequestToTeacher visible={requestTeacherModal} onClose={handleCloseModal}/>
         </div>
     );
 };

@@ -28,7 +28,7 @@ const AddTeacher = ({ visible, onClose }) => {
             faculty: faculties[faculty],
         };
 
-        console.log(user);
+        // console.log(user);
         axiosInstance
             .post(API_ROUTES.addUser, user, {
                 headers: {
@@ -36,7 +36,7 @@ const AddTeacher = ({ visible, onClose }) => {
                 },
             })
             .then((data) => {
-                alert('User was created successfully.');
+                alert('User was created successfully!\nDefault password: 123456@Abc');
                 onClose();
             })
             .catch((err) => {

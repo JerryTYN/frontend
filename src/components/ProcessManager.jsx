@@ -111,7 +111,7 @@ const ProcessManager = () => {
                     </button>
                 </div>
             </div>
-            <div className=" h-[480px] bg-white rounded-b-lg shadow-xl overflow-auto">
+            <div className=" h-[590px] bg-white rounded-b-lg shadow-xl overflow-auto">
                 <table className="w-full text-sm text-left text-gray-500 ">
                     <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
                         <tr className="flex items-center justify-between w-full">

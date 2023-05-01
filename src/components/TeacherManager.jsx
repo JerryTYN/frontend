@@ -7,7 +7,7 @@ import ResetPasswordModal from './ResetPasswordModal';
 import DeleteUserModal from './DeleteUserModal';
 import { API_ROUTES, axiosInstance } from '../cons';
 import AddTeacher from './AddTeacher';
-const TeacherManager = ({ title }) => {
+const TeacherManager = () => {
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState();
     useEffect(() => {
@@ -19,20 +19,12 @@ const TeacherManager = ({ title }) => {
             })
             .then((res) => {
                 setUsers(res.data);
-                console.log(res);
+                // console.log(res);
             })
             .catch((err) => {
-                console.log(err);
+                alert(err.response.data);
             });
     }, []);
-
-    // useEffect(() => {
-
-    //   axios.get('http://localhost:3003/teacher').then((res)=>{
-    //     setUsers(res.data)
-    //   })
-    // }, [])
-
     const [openModal, setOpenModal] = useState(false);
     const handleCloseModal = () => {
         setOpenModal(false);
@@ -48,7 +40,7 @@ const TeacherManager = ({ title }) => {
             })
             .then((res) => {
                 setUsers(res.data);
-                console.log(res);
+                // console.log(res);
             });
     };
     const [addTeacherModal, setAddTeacherModal] = useState(false);
@@ -95,7 +87,7 @@ const TeacherManager = ({ title }) => {
                     </button>
                 </div>
             </div>
-            <div className=" h-[480px] bg-white rounded-b-lg shadow-xl overflow-auto">
+            <div className=" h-[580px] bg-white rounded-b-lg shadow-xl overflow-auto">
                 <table className="w-full text-sm text-left text-gray-500 ">
                     <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>

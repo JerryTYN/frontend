@@ -57,13 +57,13 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
         let userProfile = {
             email: email,
             fullName: name,
-            faculty: faculty,
+            faculty: faculties[faculty],
             phone: phone,
             placeOfBirth: placeOfBirth,
             dateOfBirth: dayOfBirth,
             gender: gender,
         };
-        console.log(userProfile);
+        // console.log(userProfile);
         axiosInstance
             .put(API_ROUTES.updateProfile, userProfile, {
                 headers: {
@@ -71,10 +71,13 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
                 },
             })
             .then((data) => {
+            
                 alert(data.data.message);
             })
             .catch((err) => {
-                console.log(err);
+                
+                alert(err.response.data.message)
+                // console.log(err);
             });
     };
 

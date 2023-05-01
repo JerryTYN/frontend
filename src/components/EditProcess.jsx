@@ -169,7 +169,7 @@ const EditProcess = ({ visible, onClose, process }) => {
                                         </tr>
                                     );
 
-                                console.log(semesters);
+                                // console.log(semesters);
                                 let checked = semesters[
                                     semester - 1
                                 ].subjectId.includes(data.id);
