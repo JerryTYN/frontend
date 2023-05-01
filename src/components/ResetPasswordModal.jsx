@@ -15,7 +15,7 @@ const ResetPasswordModal = ({ visible, userInfo, onClose }) => {
         }
       )
       .then((res) => {
-        alert(res.data.message);
+        alert('Reset password sucessufully!\nDefault password: 123456@Abc');
         onClose();
       });
   };

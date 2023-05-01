@@ -16,6 +16,8 @@ export const API_ROUTES = {
     getSubject: '/api/Subject/GetById',
     requestSubject: '/api/Subject/Request',
     updateSubject: '/api/Subject',
+    createSubject: '/api/Subject',
+    deleteSubject: '/api/Subject',
 
     // CURRICULUM
     createProcess: '/api/Curriculum',

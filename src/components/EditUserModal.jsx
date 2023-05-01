@@ -57,7 +57,7 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
         let userProfile = {
             email: email,
             fullName: name,
-            faculty: faculty,
+            faculty: faculties[faculty],
             phone: phone,
             placeOfBirth: placeOfBirth,
             dateOfBirth: dayOfBirth,
@@ -71,10 +71,12 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
                 },
             })
             .then((data) => {
+            
                 alert(data.data.message);
             })
             .catch((err) => {
-                alert(err.response.data)
+                
+                alert(err.response.data.message)
                 // console.log(err);
             });
     };

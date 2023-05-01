@@ -393,6 +393,7 @@ const SubjectManager = () => {
                 onClose={handleCloseModal}
                 subject={subject}
             />
+            <RequestToTeacher visible={requestTeacherModal} onClose={handleCloseModal}/>
         </div>
     );
 };
