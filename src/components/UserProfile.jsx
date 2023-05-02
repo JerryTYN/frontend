@@ -28,6 +28,7 @@ const UserProfile = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [faculty, setFaculty] = useState();
+    const [selectFaculty, setSelectFaculty] = useState(0);
     useEffect(() => {
         if (userInfo) {
             setName(userInfo.fullName);
@@ -39,7 +40,7 @@ const UserProfile = () => {
             setFaculty(userInfo.faculty);
         }
     }, [userInfo]);
-
+    console.log("Thông tin user", userInfo)
     useEffect(() => {
         let token = sessionStorage.getItem('token');
 
@@ -125,10 +126,14 @@ const UserProfile = () => {
     };
 
     const handleUpdateProfile = (e) => {
+        let tmp = faculty
+        if (selectFaculty != 0){
+            tmp = faculties[selectFaculty]
+        }
         let userProfile = {
             email: email,
             fullName: name,
-            faculty: faculties[faculty],
+            faculty: tmp,
             phone: phone,
             placeOfBirth: placeOfBirth,
             dateOfBirth: dayOfBirth,
@@ -391,7 +396,7 @@ const UserProfile = () => {
                                                 : false
                                         }
                                         onChange={(e) => {
-                                            setFaculty(
+                                            setSelectFaculty(
                                                 parseInt(e.target.value)
                                             );
                                         }}

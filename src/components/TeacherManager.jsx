@@ -39,6 +39,7 @@ const TeacherManager = () => {
                 },
             })
             .then((res) => {
+                
                 setUsers(res.data);
                 // console.log(res);
             });
@@ -48,7 +49,7 @@ const TeacherManager = () => {
     const [deleteUser, setDeleteUser] = useState(false);
     const [searchUser, setSearchUser] = useState('');
     return (
-        <div className="relative h-[450px] shadow-md rounded-lg p-2.5">
+        <div className="relative h-[600px] shadow-md rounded-lg p-2.5">
             <div className="flex items-center justify-between py-4   p-2.5">
                 <label for="table-search" className="sr-only">
                     Search
@@ -87,7 +88,7 @@ const TeacherManager = () => {
                     </button>
                 </div>
             </div>
-            <div className=" h-[580px] bg-white rounded-b-lg shadow-xl overflow-auto">
+            <div className=" h-[500px] bg-white rounded-b-lg shadow-xl overflow-auto">
                 <table className="w-full text-sm text-left text-gray-500 ">
                     <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>

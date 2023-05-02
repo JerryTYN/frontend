@@ -266,7 +266,7 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
         },
     ];
     const [tableRowCDR, setTableRowCDR] = useState(rowCDR);
-  const addTableRowCDR = () => {
+    const addTableRowCDR = () => {
         setTableRowCDR((r) => {
             let idx = r[r.length - 1].id + 1;
             return [

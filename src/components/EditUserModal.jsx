@@ -19,7 +19,7 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
     const [dayOfBirth, setDayOfBirth] = useState();
     const [placeOfBirth, setPlaceOfBirth] = useState('');
     const [faculty, setFaculty] = useState();
-
+    const [selectFaculty, setSelectFaculty] = useState(0);
     useEffect(() => {
         if (userInfo) {
             setName(userInfo.fullName);
@@ -54,10 +54,14 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
     };
 
     const handleUpdateProfile = (e) => {
+        let tmp = faculty
+        if (selectFaculty != 0){
+            tmp = faculties[selectFaculty]
+        }
         let userProfile = {
             email: email,
             fullName: name,
-            faculty: faculties[faculty],
+            faculty: tmp,
             phone: phone,
             placeOfBirth: placeOfBirth,
             dateOfBirth: dayOfBirth,
@@ -286,7 +290,7 @@ const EditUserModal = ({ visible, onClose, userInfo }) => {
                                                     : false
                                             }
                                             onChange={(e) => {
-                                                setFaculty(
+                                                setSelectFaculty(
                                                     parseInt(e.target.value)
                                                 );
                                             }}

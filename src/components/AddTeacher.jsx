@@ -36,7 +36,7 @@ const AddTeacher = ({ visible, onClose }) => {
                 },
             })
             .then((data) => {
-                alert('User was created successfully!\nDefault password: 123456@Abc');
+                alert('User was created successfully!');
                 onClose();
             })
             .catch((err) => {

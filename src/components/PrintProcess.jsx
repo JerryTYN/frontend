@@ -128,7 +128,7 @@ const PrintProcess = ({ visible, onClose, process }) => {
           </button>
         </div>
         <div id="process" className="p-2.5">
-          <h1 className="text-xl font-bold text-center">
+          <h1 className="pb-10 text-xl font-bold text-center">
             Tổng quan chương trình: {processName}
           </h1>
 
@@ -184,7 +184,7 @@ const PrintProcess = ({ visible, onClose, process }) => {
             <p>Không tìm thấy thông tin môn học</p>
           )}
 
-          <h1 className="text-xl font-bold text-center">
+          <h1 className="pt-20 pb-20 text-xl font-bold text-center">
             Chi tiết chương trình
           </h1>
 
@@ -192,9 +192,9 @@ const PrintProcess = ({ visible, onClose, process }) => {
             Object.values(subjects).map((s, idx) => {
               return (
                 <div className="space-y-10">
-                  <hr className="border-gray-600  border-1" />
+                  <hr className="border-gray-600 border-1" />
                   <MyDocument key={s.id} data={s} />
-                  <hr className="border-gray-600  border-1" />
+                  <hr className="border-gray-600 border-1" />
                 </div>
               );
             })}
