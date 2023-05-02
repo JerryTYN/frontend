@@ -36,17 +36,14 @@ const PrintProcess = ({ visible, onClose, process }) => {
         setSubjects(lst);
       });
   }, []);
+  console.log("List mon hoc", subjects);
   useEffect(() => {
     if (process.subjectCurriculumModels) {
       setSjInSemester(process.subjectCurriculumModels);
-      console.log("1",sjInSemester)
+      setProcessName(process.name);
     }
   }, [process.name, process.subjectCurriculumModels]);
 
-  useEffect(() => {
-    console.log("CT", process);
-    setProcessName(process.name);
-  }, []);
   const subjectsWithInfo = sjInSemester.flatMap(({ semesterName, subjectId }) =>
     subjectId.map((id) => {
       const subject = subjects.find((subject) => subject.id === id);
@@ -54,29 +51,39 @@ const PrintProcess = ({ visible, onClose, process }) => {
         semesterName,
         subjectId: id,
         subjectName: subject ? subject.name : "",
+        totalCredits: subject ? subject.totalCredits : "",
       };
     })
   );
-  console.log("Môn học theo học kỳ", subjectsWithInfo);
+
   const hky = [];
   subjectsWithInfo.forEach((subject) => {
     const semesterName = subject.semesterName;
+
     const semesterIndex = hky.findIndex(
       (semester) => semester.name === semesterName
     );
     if (semesterIndex === -1) {
       hky.push({
         name: semesterName,
-        subjects: [{ id: subject.subjectId, name: subject.subjectName }],
+
+        subjects: [
+          {
+            id: subject.subjectId,
+            name: subject.subjectName,
+            totalCredits: subject.totalCredits,
+          },
+        ],
       });
     } else {
       hky[semesterIndex].subjects.push({
         id: subject.subjectId,
         name: subject.subjectName,
+        totalCredits: subject.totalCredits,
       });
     }
   });
-  
+  //Print
   const handleExportPDF = async () => {
     const input = document.getElementById("process");
     const canvas = await html2canvas(input, { scrollY: -window.scrollY });
@@ -119,10 +126,22 @@ const PrintProcess = ({ visible, onClose, process }) => {
     }
     pdf.save("file.pdf");
   };
+  const [subject, setSubject] = useState();
+  const getSubjectHandler = (sj) => {
+    axiosInstance
+      .get(API_ROUTES.getSubject + `?id=${sj}`, {
+        headers: {
+          Authorization: "bearer " + sessionStorage.getItem("token"),
+        },
+      })
+      .then((data) => setSubject(data.data.result))
+      .catch((err) => alert(err.response.data));
+  };
+
   if (!visible) return null;
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm ">
-      <div className="flex-row w-[95%] h-[700px] bg-white  overflow-auto  rounded ">
+      <div className="flex-row w-[1000px] h-[700px] bg-white  overflow-auto  rounded ">
         <div className="sticky top-0 z-40 flex justify-between w-full bg-black p-2.5">
           <h1 className="pl-4 text-2xl text-white">In chương trình</h1>
           <button
@@ -153,34 +172,45 @@ const PrintProcess = ({ visible, onClose, process }) => {
 
           {hky.length > 0 ? (
             hky.map((semester) => (
-              <div className="p-2.5" key={semester.name}>
-                <table className="w-full border border-gray-400 p-2.5">
+              <div
+                className="p-2.5 justify-center items-center flex-col flex"
+                key={semester.name}
+              >
+                <table className="border border-gray-400 p-2.5">
                   <thead>
                     <tr>
-                      <th className="w-full text-center">{`Học kỳ ${semester.name}`}</th>
+                      <th className="w-full p-3 text-center">{`Học kỳ ${semester.name}`}</th>
                     </tr>
                     <tr className="flex w-full">
-                      <th className="border border-gray-400 w-96">
+                      <th className="w-32 border border-gray-400 p-2.5">
                         Mã môn học
                       </th>
-                      <th className="border border-gray-400 w-96">
+                      <th className="border border-gray-400 w-96  p-2.5">
                         Tên môn học
+                      </th>
+                      <th className="w-32 border border-gray-400 p-2.5">
+                        Tổng tín chỉ
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {semester.subjects.map((subject) => {
                       return (
-                        <tr className="flex w-full" key={subject.id}>
-                          <td className="border border-gray-400 w-96">
+                        <tr className="flex w-full " key={subject.id}>
+                          <td className="w-32 p-2 border border-gray-400">
                             {subject.id}
                           </td>
-                          <td className="border border-gray-400 w-96">
+                          <td className="p-2 border border-gray-400 w-96">
                             {subject.name}
+                          </td>
+                          <td className="w-32 p-2 border border-gray-400">
+                            {subject.totalCredits}
                           </td>
                         </tr>
                       );
                     })}
+                  
+                    
                   </tbody>
                 </table>
               </div>
@@ -189,11 +219,14 @@ const PrintProcess = ({ visible, onClose, process }) => {
             <p>Không tìm thấy thông tin môn học</p>
           )}
 
+          <hr className="pt-6 pb-6 border-gray-600 border-1" />
           <h1 className="text-xl font-bold text-center">
             Chi tiết chương trình
           </h1>
+
           
             <MyDocument />
+          
           
         </div>
         <div className="sticky bottom-0 flex justify-end w-full bg-gray-300 h-14 p-2.5">
