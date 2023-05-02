@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Textarea } from '@material-tailwind/react';
 import { API_ROUTES, axiosInstance } from '../cons';
 
-const CloneSubjectModal = ({ visible, onClose, subject }) => {
+const UpdateSubjectModal = ({ visible, onClose, subject }) => {
     const tlht = [
         {
             type: 'text',
@@ -266,12 +266,13 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
         },
     ];
     const [tableRowCDR, setTableRowCDR] = useState(rowCDR);
-    const addTableRowCDR = () => {
+  const addTableRowCDR = () => {
         setTableRowCDR((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
                         clo: r.length + 1,
                         content: '',
@@ -312,12 +313,13 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
     const [tableRowKHGD, setTableRowKHGD] = useState(rowKHGD);
     const addTableRowKHGD = () => {
         setTableRowKHGD((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         content: '',
                         nLessons: 0,
                         clos: '',
@@ -359,12 +361,14 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
     const [tableRowPPDG, setTableRowPPDG] = useState(rowPPDG);
     const addTableRowPPDG = () => {
         setTableRowPPDG((r) => {
+            let idx = r[r.length - 1].id + 1;
+
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         clo: 0,
                         test: '',
                         method: '',
@@ -405,12 +409,13 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
     const [tableRowTPDG, setTableRowTPDG] = useState(rowTPDG);
     const addTableRowTPDG = () => {
         setTableRowTPDG((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         name: '',
                         method: '',
                         proportion: 0,
@@ -668,7 +673,7 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
             <div className="flex-row w-[1100px] h-[600px] bg-white  overflow-auto  rounded ">
                 <div className="sticky top-0 z-40 flex justify-between w-full bg-black p-2.5">
                     <h1 className="pl-4 text-2xl text-white">
-                        Cập nhật môn học
+                       Sao chép môn học
                     </h1>
                     <button
                         onClick={onClose}
@@ -701,7 +706,7 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
                             <input
                                 type="text"
                                 className="w-[354.4px] border-b-2 focus:outline-none"
-                                // value={subjectId}
+                                
                                 disabled
                             />
                         </div>
@@ -714,7 +719,7 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
                             <input
                                 type="text"
                                 className="w-[354.4px] border-b-2 focus:outline-none"
-                                value={subjectName}
+                                
                                 onChange={(e) => setSubjectName(e.target.value)}
                             />
                         </div>
@@ -1110,7 +1115,10 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
                                         {tableRowCDR &&
                                             tableRowCDR.map((item, i) => {
                                                 return (
-                                                    <tr  key={`row-${item.id}`} id={i}>
+                                                    <tr
+                                                        key={`row-${item.id}`}
+                                                        id={i}
+                                                    >
                                                         <td
                                                             scope="row"
                                                             className="w-10 font-medium text-center border border-gray-400 "
@@ -1240,7 +1248,10 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
                                         {tableRowKHGD &&
                                             tableRowKHGD.map((item, i) => {
                                                 return (
-                                                    <tr  key={`row-${item.id}`} id={i}>
+                                                    <tr
+                                                        key={`row-${item.id}`}
+                                                        id={i}
+                                                    >
                                                         <th
                                                             scope="row"
                                                             className="w-10 font-medium border border-gray-400"
@@ -1381,8 +1392,7 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
                             <div className=" relative w-[1100px] flex flex-col text-sm text-gray-500">
                                 <table className="w-full text-sm ">
                                     <thead className="">
-                                        <tr
-                                        >
+                                        <tr>
                                             <th
                                                 scope="col"
                                                 className="px-1 border border-gray-400 "
@@ -1421,7 +1431,7 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
                                             tableRowPPDG.map((item, i) => {
                                                 return (
                                                     <tr
-                                                    key={`row-${item.id}`}
+                                                        key={`row-${item.id}`}
                                                         id={i}
                                                         className={
                                                             item.className
@@ -1601,7 +1611,7 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
                                             tableRowTPDG.map((item, i) => {
                                                 return (
                                                     <tr
-                                                    key={`row-${item.id}`}
+                                                        key={`row-${item.id}`}
                                                         id={i}
                                                         className={
                                                             item.className
@@ -1710,7 +1720,7 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
                             className="w-[90px] h-12 border rounded-lg text-center bg-green-500 border-gray-100 text-gray-50 font-semibold hover:bg-green-300 hover:text-gray-800"
                             onClick={saveSubject}
                         >
-                            Sao chép
+                            Lưu
                         </button>
                         {/* <button className="w-[90px] text-gray-50 h-12 bg-blue-500 border rounded-lg text-center border-gray-100 hover:bg-blue-300 hover:text-gray-800 font-semibold">
                             Xem lại
@@ -1722,4 +1732,4 @@ const CloneSubjectModal = ({ visible, onClose, subject }) => {
     );
 };
 
-export default CloneSubjectModal;
+export default UpdateSubjectModal;

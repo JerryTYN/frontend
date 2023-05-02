@@ -266,12 +266,13 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
         },
     ];
     const [tableRowCDR, setTableRowCDR] = useState(rowCDR);
-    const addTableRowCDR = () => {
+  const addTableRowCDR = () => {
         setTableRowCDR((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
                         clo: r.length + 1,
                         content: '',
@@ -312,12 +313,13 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
     const [tableRowKHGD, setTableRowKHGD] = useState(rowKHGD);
     const addTableRowKHGD = () => {
         setTableRowKHGD((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         content: '',
                         nLessons: 0,
                         clos: '',
@@ -359,12 +361,14 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
     const [tableRowPPDG, setTableRowPPDG] = useState(rowPPDG);
     const addTableRowPPDG = () => {
         setTableRowPPDG((r) => {
+            let idx = r[r.length - 1].id + 1;
+
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         clo: 0,
                         test: '',
                         method: '',
@@ -405,12 +409,13 @@ const UpdateSubjectModal = ({ visible, onClose, subject }) => {
     const [tableRowTPDG, setTableRowTPDG] = useState(rowTPDG);
     const addTableRowTPDG = () => {
         setTableRowTPDG((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         name: '',
                         method: '',
                         proportion: 0,

@@ -48,7 +48,7 @@ const TeacherManager = () => {
     const [deleteUser, setDeleteUser] = useState(false);
     const [searchUser, setSearchUser] = useState('');
     return (
-        <div className="relative h-full shadow-md rounded-lg p-2.5">
+        <div className="relative h-[450px] shadow-md rounded-lg p-2.5">
             <div className="flex items-center justify-between py-4   p-2.5">
                 <label for="table-search" className="sr-only">
                     Search

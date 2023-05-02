@@ -7,6 +7,7 @@ export const Menus = [
     {title: "Quản lý môn học", icon: <AiFillContainer/>, url:"SubjectManager", roles: "Admin"},
     {title: "Quản lý giảng viên", icon: <AiOutlineUserSwitch/>, url:"TeacherManager", roles: "Admin"},
     {title: "Quản lý Môn học", icon: <AiFillContainer/>, url:"SubjectManager_Teacher_role", roles: "User"},
+    {title: "Quản lý Chương trình", icon: <AiFillHdd/>, url:"ProcessManager_Teacher_role", roles: "User"},
     
     
 ]

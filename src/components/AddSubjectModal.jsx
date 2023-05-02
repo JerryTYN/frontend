@@ -268,10 +268,11 @@ const AddSubjectModal = ({ visible, onClose }) => {
     const [tableRowCDR, setTableRowCDR] = useState(rowCDR);
     const addTableRowCDR = () => {
         setTableRowCDR((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
                         clo: r.length + 1,
                         content: '',
@@ -312,12 +313,13 @@ const AddSubjectModal = ({ visible, onClose }) => {
     const [tableRowKHGD, setTableRowKHGD] = useState(rowKHGD);
     const addTableRowKHGD = () => {
         setTableRowKHGD((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         content: '',
                         nLessons: 0,
                         clos: '',
@@ -359,12 +361,14 @@ const AddSubjectModal = ({ visible, onClose }) => {
     const [tableRowPPDG, setTableRowPPDG] = useState(rowPPDG);
     const addTableRowPPDG = () => {
         setTableRowPPDG((r) => {
+            let idx = r[r.length - 1].id + 1;
+
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         clo: 0,
                         test: '',
                         method: '',
@@ -387,7 +391,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
     const handleTableRowsPPDG = (index, key, value) => {
         setTableRowPPDG((prev) => {
             prev[index].value[key] = value;
-            console.log('Handle Change:', prev);
+            
             return prev;
         });
     };
@@ -407,12 +411,13 @@ const AddSubjectModal = ({ visible, onClose }) => {
     const [tableRowTPDG, setTableRowTPDG] = useState(rowTPDG);
     const addTableRowTPDG = () => {
         setTableRowTPDG((r) => {
+            let idx = r[r.length - 1].id + 1;
             return [
                 ...r,
                 {
-                    id: r.length,
+                    id: idx,
                     value: {
-                        order: r.length + 1,
+                        order: idx,
                         name: '',
                         method: '',
                         proportion: 0,
@@ -1222,7 +1227,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             onChange={(e) => {
                                                                 // console.log(item.id);
                                                                 handleTableRowsPPDG(
-                                                                    item.id,
+                                                                    i,
                                                                     'clo',
                                                                     Number(
                                                                         e.target
@@ -1238,7 +1243,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             className="w-full border-b-2 focus:outline-none"
                                                             onChange={(e) =>
                                                                 handleTableRowsPPDG(
-                                                                    item.id,
+                                                                   i,
                                                                     'test',
                                                                     e.target
                                                                         .value
@@ -1252,7 +1257,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             className="w-full border-b-2 focus:outline-none"
                                                             onChange={(e) =>
                                                                 handleTableRowsPPDG(
-                                                                    item.id,
+                                                                    i,
                                                                     'method',
                                                                     e.target
                                                                         .value
@@ -1268,7 +1273,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             defaultValue={0}
                                                             onChange={(e) =>
                                                                 handleTableRowsPPDG(
-                                                                    item.id,
+                                                                    i,
                                                                     'proportion',
                                                                     Number(
                                                                         e.target
@@ -1286,7 +1291,7 @@ const AddSubjectModal = ({ visible, onClose }) => {
                                                             defaultValue={0}
                                                             onChange={(e) =>
                                                                 handleTableRowsPPDG(
-                                                                    item.id,
+                                                                    i,
                                                                     'target',
                                                                     Number(
                                                                         e.target

@@ -10,6 +10,7 @@ import TeacherManager from '../components/TeacherManager';
 import UserProfile from '../components/UserProfile';
 import { API_ROUTES, axiosInstance } from '../cons';
 import SubjectManagerTeacherRole from '../components/SubjectManagerTeacherRole';
+import ProcessManagerTeacherRole from '../components/ProcessManagerTeacherRole';
 const isNotActiveStyle =
     'flex items-center  gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
 const isActiveStyle =
@@ -229,6 +230,14 @@ const Home = () => {
                             path="Home/SubjectManager_Teacher_role"
                             element={
                                 <SubjectManagerTeacherRole
+                                    userInfo={userInfo}
+                                />
+                            }
+                        />
+                        <Route
+                            path="Home/ProcessManager_Teacher_role"
+                            element={
+                                <ProcessManagerTeacherRole
                                     userInfo={userInfo}
                                 />
                             }

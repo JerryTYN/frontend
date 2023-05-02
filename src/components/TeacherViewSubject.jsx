@@ -53,7 +53,7 @@ const TeacherViewSubject = ({ visible, onClose, sj }) => {
   };
   if (!visible) return null;
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
+    <div className="fixed inset-0 flex items-center justify-center w-full bg-black bg-opacity-25 backdrop-blur-sm">
       <div className="flex-row w-[1100px] h-[600px] bg-white  overflow-auto  rounded ">
         <div className="sticky top-0 z-40 flex justify-between w-full bg-black p-2.5">
           <h1 className="pl-4 text-2xl text-white">Chỉnh sửa môn học</h1>
