@@ -193,7 +193,7 @@ const PrintProcess = ({ visible, onClose, process }) => {
               return (
                 <div className="space-y-10">
                   <hr className="border-gray-600 border-1" />
-                  <MyDocument key={s.id} data={s} />
+                  <MyDocument key={idx} data={s} />
                   <hr className="border-gray-600 border-1" />
                 </div>
               );

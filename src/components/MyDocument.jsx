@@ -27,7 +27,7 @@ const MyDocument = ({ data }) => {
         id="report"
       >
         <div className="font-medium text-md text-gray-950">
-          <p>1 Tên và mã học phần: {data && `${data.name} - ${data.id}`}</p>
+          <p>1 Tên và mã học phần: {data && `${data.name} - ${data && data.id}`}</p>
         </div>
         <div className="font-medium text-md text-gray-950">2 Số tín chỉ</div>
         <div className="flex pl-4 space-x-16 text-sm text-gray-500">
