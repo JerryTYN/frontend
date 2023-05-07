@@ -42,7 +42,7 @@ const AddProcess = ({ visible, onClose }) => {
         subjectId: [],
       });
     }
-
+    
     setSemesters(list_s);
   }, [semesterTotal]);
 
