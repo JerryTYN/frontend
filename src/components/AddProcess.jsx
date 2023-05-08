@@ -40,9 +40,11 @@ const AddProcess = ({ visible, onClose }) => {
       list_s.push({
         semesterName: `Học kì ${i + 1}`,
         subjectId: [],
+        credit: []
       });
+      console.log(list_s)
     }
-    
+
     setSemesters(list_s);
   }, [semesterTotal]);
 
@@ -63,16 +65,19 @@ const AddProcess = ({ visible, onClose }) => {
         alert(err.response.data);
       });
   };
+
   const handleCheckboxChange = (checked, subject) => {
     const updatedSubjects = subjects.map((s) => {
       if (s.id === subject.id) {
         return { ...s, selected: checked };
       }
+      
       return s;
     });
 
     const selectedSubjects = updatedSubjects.filter((s) => s.selected);
-
+    
+    console.log(selectedSubjects)
     const newTotalCredits = selectedSubjects.reduce(
       (total, s) => total + s.totalCredits,
       0
@@ -225,12 +230,9 @@ const AddProcess = ({ visible, onClose }) => {
                           <td className="px-6 py-4">{data.id}</td>
                           <td className="px-6 py-4">{data.name}</td>
                           <td className="px-6 py-4">{data.totalCredits}</td>
-
-                          {/* <td className="px-6 py-4">{`${data.name} [${data.id}]`}</td> */}
                         </tr>
                       );
 
-                    // console.log(semesters);
                     let checked = semesters[semester - 1].subjectId.includes(
                       data.id
                     );
@@ -253,6 +255,7 @@ const AddProcess = ({ visible, onClose }) => {
 
                                 if (!checked) {
                                   current[semester - 1].subjectId.push(data.id);
+                                  current[semester - 1].credit.push(data.totalCredits);
                                 } else {
                                   let idx = current[
                                     semester - 1
@@ -280,14 +283,14 @@ const AddProcess = ({ visible, onClose }) => {
               </tbody>
             </table>
           </div>
-        <div className="sticky bottom-0 flex justify-end w-full h-14 p-2.5">
-          <button
-            className="w-48 h-10 p-2 font-semibold text-white bg-green-500 rounded-md hover:bg-green-400"
-            onClick={handleCreate}
-          >
-            Tạo chương trình
-          </button>
-        </div>
+          <div className="sticky bottom-0 flex justify-end w-full h-14 p-2.5">
+            <button
+              className="w-48 h-10 p-2 font-semibold text-white bg-green-500 rounded-md hover:bg-green-400"
+              onClick={handleCreate}
+            >
+              Tạo chương trình
+            </button>
+          </div>
         </div>
       </div>
     </div>

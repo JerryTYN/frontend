@@ -41,13 +41,13 @@ const EditProcess = ({ visible, onClose, process }) => {
 
   const handleUpdate = () => {
     let cirObj = {
-      id: process.id,
+      //   id: process.id,
       name: processName,
       subjectCurriculumModels: semesters,
     };
 
     axiosInstance
-      .put(API_ROUTES.updateProcess, cirObj, {
+      .post(API_ROUTES.updateProcess, cirObj, {
         headers: {
           Authorization: "bearer " + sessionStorage.getItem("token"),
         },
@@ -63,7 +63,7 @@ const EditProcess = ({ visible, onClose, process }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm ">
       <div className="flex-row w-[95%] h-[700px] bg-white    rounded ">
         <div className="sticky top-0 z-40 flex justify-between w-full bg-black p-2.5">
-          <h1 className="pl-4 text-2xl text-white">Thêm chương trình</h1>
+          <h1 className="pl-4 text-2xl text-white">Sao chép chương trình</h1>
           <button
             onClick={onClose}
             type="button"
@@ -94,7 +94,7 @@ const EditProcess = ({ visible, onClose, process }) => {
                 <input
                   type="text"
                   className="w-[354.4px] border-b-2 focus:outline-none"
-                  value={processName}
+                  //   value={processName}
                   onChange={(e) => setProcessName(e.target.value)}
                 />
               </div>
@@ -124,13 +124,13 @@ const EditProcess = ({ visible, onClose, process }) => {
                     ))}
                 </select>
               </div>
-                <label>Tổng tín chỉ chương trình:</label>
-                <input
-                  type="number"
-                  readOnly
-                  className="w-10"
-                  // value={totalCredits}
-                />
+              <label>Tổng tín chỉ chương trình:</label>
+              <input
+                type="number"
+                readOnly
+                className="w-10"
+                // value={totalCredits}
+              />
             </div>
           </div>
           <div className="pt-2 flex py-4  p-2.5 ">
@@ -263,7 +263,7 @@ const EditProcess = ({ visible, onClose, process }) => {
               className="w-48 h-10 p-2 font-semibold text-white bg-green-500 rounded-md hover:bg-green-400"
               onClick={handleUpdate}
             >
-              Chỉnh sửa
+              Sao chép
             </button>
           </div>
         </div>

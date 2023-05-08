@@ -7,21 +7,24 @@ import {
   AiFillDelete,
 } from "react-icons/ai";
 import { MdOutlineLockReset } from "react-icons/md";
+import { BiCopy } from "react-icons/bi";
 
 import AddProcess from "./AddProcess";
 import EditProcess from "./EditProcess";
 import PrintProcess from "./PrintProcess";
+import CloneProcess from './CloneProcess';
 import { API_ROUTES, axiosInstance } from "../cons";
 const ProcessManager = () => {
   const [editProcessModal, setEditProcessModal] = useState(false);
   const [addProcessModal, setAddProcessModal] = useState(false);
   const [printProcessModal, setPrintProcessModal] = useState(false);
+  const [cloneProcessModal, setCloneProcessModal] = useState(false);
   const [searchProcess, setSearchProcess] = useState("");
   const handleCloseModal = () => {
     setAddProcessModal(false);
     setPrintProcessModal(false);
     setEditProcessModal(false);
-
+    setCloneProcessModal(false);
     axiosInstance
       .get(API_ROUTES.getProcesses, {
         headers: {
@@ -61,7 +64,6 @@ const ProcessManager = () => {
           })
           .then((data) => setProcesses(data.data));
       });
-
     axiosInstance
       .get(API_ROUTES.getProcesses, {
         headers: {
@@ -162,6 +164,20 @@ const ProcessManager = () => {
                       data-modal-target="editUserModal"
                       data-modal-show="editUserModal"
                       className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
+                      onClick={() => {
+                        // setUser(u);
+                        setProcess(item);
+                        setCloneProcessModal(true);
+                      }}
+                    >
+                      <BiCopy className="text-green-800" />
+                    </button>
+                    <button
+                      href="#"
+                      type="button"
+                      data-modal-target="editUserModal"
+                      data-modal-show="editUserModal"
+                      className="inline-flex items-center p-2 ml-auto text-sm text-gray-600 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg"
                       onClick={() => handleDelete(item.id)}
                     >
                       <AiFillDelete className="text-red-800" />
@@ -199,6 +215,11 @@ const ProcessManager = () => {
       />
       <PrintProcess
         visible={printProcessModal}
+        onClose={handleCloseModal}
+        process={process}
+      />
+      <CloneProcess
+        visible={cloneProcessModal}
         onClose={handleCloseModal}
         process={process}
       />
