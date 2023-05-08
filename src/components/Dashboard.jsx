@@ -17,9 +17,41 @@ const Dashboard = () => {
   const [numberProcess, setNumberProcess] = useState(0);
   const [numberSubject, setNumberSubject] = useState(0);
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
   const [subjects, setSubjects] = useState([]);
+  const [userInfo, setUserInfo] = useState();
+  //   useEffect(() => {
+  //     if (userInfo) {
+  //         setName(userInfo.fullName);
+  //         setGender(userInfo.gender);
+  //         setEmail(userInfo.email);
+  //         setPhone(userInfo.phone);
+  //         setDayOfBirth(userInfo.dateOfBirth);
+  //         setPlaceOfBirth(userInfo.placeOfBirth);
+  //         setFaculty(userInfo.faculty);
+  //     }
+  // }, [userInfo]);
+  useEffect(() => {
+    let token = sessionStorage.getItem("token");
 
+    // if (!token) {
+    //   navigate("/");
+    // } else {
+    axiosInstance
+      .get(API_ROUTES.getUserInfo, {
+        headers: {
+          Authorization: "bearer " + token,
+        },
+      })
+      .then((data) => {
+        // console.log(data);
+        setUserInfo(data.data.result);
+      })
+      .catch((err) => {
+        alert(err.response.data);
+      });
+  }, []);
+  console.log("Thông tin user", userInfo);
   useEffect(() => {
     axiosInstance
       .get(API_ROUTES.getListUser, {
@@ -169,29 +201,33 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {users.map((u, index) => (
-                  <tr
-                    key={index}
-                    className="bg-white border-b hover:bg-gray-50 "
-                  >
-                    <th
-                      scope="row"
-                      className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-                    >
-                      <div className="pl-3">
-                        <div className="text-base font-semibold">
-                          {u.fullName}
-                        </div>
-                        <div className="font-normal text-gray-500">
-                          {u.email}
-                        </div>
-                      </div>
-                    </th>
-                    <td className="px-6 py-4">{u.faculty}</td>
-                    <td className="px-6 py-4">{u.dateOfBirth}</td>
-                    <td className="px-6 py-4">{u.placeOfBirth}</td>
+                {users.map((u, index) => {
+                  {
+                    if (u.faculty == userInfo.faculty) {
+                      return (
 
-                    {/* <td className="px-6 py-4 ">
+                      <tr
+                        key={index}
+                        className="bg-white border-b hover:bg-gray-50 "
+                      >
+                        <th
+                          scope="row"
+                          className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
+                        >
+                          <div className="pl-3">
+                            <div className="text-base font-semibold">
+                              {u.fullName}
+                            </div>
+                            <div className="font-normal text-gray-500">
+                              {u.email}
+                            </div>
+                          </div>
+                        </th>
+                        <td className="px-6 py-4">{u.faculty}</td>
+                        <td className="px-6 py-4">{u.dateOfBirth}</td>
+                        <td className="px-6 py-4">{u.placeOfBirth}</td>
+
+                        {/* <td className="px-6 py-4 ">
                       
                       <button
                         href="#"
@@ -207,8 +243,11 @@ const Dashboard = () => {
                         Edit user
                       </button>
                     </td> */}
-                  </tr>
-                ))}
+                      </tr>
+                      )
+                    }
+                  }
+                })}
               </tbody>
             </table>
           </div>
