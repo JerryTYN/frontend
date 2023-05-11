@@ -169,7 +169,9 @@ const EditProcess = ({ visible, onClose, process }) => {
                                 type="number"
                                 readOnly
                                 className="w-10"
-                                // value={totalCredits}
+                                value={totalCredits}
+                                defaultValue={0}
+                                min={0}
                             />
                         </div>
                     </div>
